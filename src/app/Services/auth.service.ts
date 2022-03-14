@@ -31,6 +31,7 @@ export class AuthService {
     this.subs.push(
       this.http.post<any>(currentUrl, user).subscribe((res) => {
         console.log("token",res.token);
+
         // this.setToken(res.token);
         // this.router.navigateByUrl('/Secret');
       })
