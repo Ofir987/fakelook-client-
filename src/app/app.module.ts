@@ -8,6 +8,10 @@ import { LoginFormComponent } from './Auth/login-form/login-form.component';
 import { SignUpFormComponent } from './Auth/sign-up-form/sign-up-form.component';
 import { MainScreenComponent } from './main-screen/main-screen.component';
 import { MapComponent } from './main-screen/map/map.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { MapComponent } from './main-screen/map/map.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule, 
+    ReactiveFormsModule, 
+    RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
