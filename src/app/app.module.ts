@@ -4,20 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginFormComponent } from './Auth/login-form/login-form.component';
-import { SignUpFormComponent } from './Auth/sign-up-form/sign-up-form.component';
+import { LoginFormComponent } from './Auth/Components/login-form/login-form.component';
+import { SignUpFormComponent } from './Auth/Components/sign-up-form/sign-up-form.component';
 import { MainScreenComponent } from './main-screen/main-screen.component';
 import { MapComponent } from './main-screen/map/map.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './Auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent,
-    SignUpFormComponent,
     MainScreenComponent,
     MapComponent
   ],
@@ -26,8 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule, 
-    ReactiveFormsModule, 
-    RouterModule,
+    AuthModule, 
     HttpClientModule
   ],
   providers: [],
