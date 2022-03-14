@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginFormComponent } from './Auth/login-form/login-form.component';
 import { SignUpFormComponent } from './Auth/sign-up-form/sign-up-form.component';
+import { MainScreenComponent } from './main-screen/main-screen.component';
+import { MapComponent } from './main-screen/map/map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+    MainScreenComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
