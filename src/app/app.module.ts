@@ -15,13 +15,19 @@ import { AddNewPostComponent } from './main-screen/add-new-post/add-new-post.com
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
+import { CommentsComponent } from './comments/comments.component';
+import { CommentsListComponent } from './comments/comments-list/comments-list.component';
+import { CommentComponent } from './comments/comments-list/comment/comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainScreenComponent,
     MapComponent,
-    AddNewPostComponent
+    AddNewPostComponent,
+    CommentsComponent,
+    CommentsListComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

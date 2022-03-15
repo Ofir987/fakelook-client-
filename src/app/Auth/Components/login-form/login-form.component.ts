@@ -16,6 +16,7 @@ export class LoginFormComponent implements OnInit {
     email: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
+      Validators.email
     ]),
     password: new FormControl('', [
       Validators.required,
@@ -25,6 +26,9 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
   submitPost(): void {
+
+    if(!this.loginForm )
+      return;
     const user: UserI = this.loginForm.value;
     this.authService.login(user);
   }

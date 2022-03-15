@@ -12,21 +12,26 @@ export class SignUpFormComponent implements OnInit {
 
   constructor(public authService:AuthService) { }
   signUpForm = new FormGroup({
-    name: new FormControl('', [
+    nameControl: new FormControl('', [
       Validators.required,
     ]),
     email: new FormControl('', [
       Validators.required,
+      Validators.email
     ]),
     address: new FormControl('', [
       Validators.required,
     ]),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', [Validators.required]),
   });
 
   ngOnInit(): void {}
 
   submitPost(): void {
+    if(!this.signUpForm.valid)
+      return;
+
+    const name = this.signUpForm.value.nameControl; 
     const user: UserI = this.signUpForm.value;
     console.log(user);
     this.authService.signUp(user);

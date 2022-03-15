@@ -2,7 +2,7 @@
     <form [formGroup]="signUpForm" (ngSubmit)="submitPost()">
       <div class="display-center"><h2>Sign Up</h2></div>
       <label for="name">First Name</label>
-      <input formControlName="name" type="text" id="name" />
+      <input formControlName="nameControl" type="text" id="name" />
       <!-- <div
         class="error"
         *ngIf="
@@ -13,7 +13,7 @@
         first name not valid
       </div> -->
       <label for="email">email</label>
-      <input formControlName="email" type="email" id="email" />
+      <input formControlName="email" type="email" name="email" id="email" />
       <!-- <div
         class="error"
         *ngIf="
