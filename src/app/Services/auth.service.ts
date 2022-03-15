@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { UserI } from '../Models/user.model';
+import { catchError, map } from 'rxjs/operators';
+import { Observable, of, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,11 @@ export class AuthService {
     const currentUrl = `${this.url}Auth/SignUp`;
     this.subs.push(
       this.http.post<any>(currentUrl, user).subscribe((res) => {
+        localStorage.setItem("token",res.token);
+
         console.log("token",res.token);
         // this.setToken(res.token);
-        // this.router.navigateByUrl('/Secret');
+        this.router.navigateByUrl('/main');
       })
     );
   }
@@ -31,10 +34,25 @@ export class AuthService {
     this.subs.push(
       this.http.post<any>(currentUrl, user).subscribe((res) => {
         console.log("token",res.token);
-
+        localStorage.setItem("token",res.token);
         // this.setToken(res.token);
-        // this.router.navigateByUrl('/Secret');
+         this.router.navigateByUrl('/main');
       })
+    );
+  }
+
+
+  // for authGuard - TODO in server
+  checkAccess(): Observable<boolean> {
+    const currentUrl = `${this.url}Auth/TestAll`;
+    var token = localStorage.getItem("token");
+
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token,
+    });
+    return this.http.get(currentUrl, { headers }).pipe(
+      map((_) => true),
+      catchError((_) => of(false))
     );
   }
 

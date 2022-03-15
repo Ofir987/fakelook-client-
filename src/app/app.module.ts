@@ -18,6 +18,9 @@ import {MatCardModule} from '@angular/material/card';
 import { CommentsComponent } from './comments/comments.component';
 import { CommentsListComponent } from './comments/comments-list/comments-list.component';
 import { CommentComponent } from './comments/comments-list/comment/comment.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+// import { AngularCesiumModule } from '@angular-cesium';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { CommentComponent } from './comments/comments-list/comment/comment.compo
     HttpClientModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    ReactiveFormsModule,
+    // AngularCesiumModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
