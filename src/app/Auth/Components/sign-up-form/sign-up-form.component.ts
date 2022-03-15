@@ -12,7 +12,7 @@ export class SignUpFormComponent implements OnInit {
 
   constructor(public authService:AuthService) { }
   signUpForm = new FormGroup({
-    nameControl: new FormControl('', [
+    name: new FormControl('', [
       Validators.required,
     ]),
     email: new FormControl('', [
@@ -31,7 +31,7 @@ export class SignUpFormComponent implements OnInit {
     if(!this.signUpForm.valid)
       return;
 
-    const name = this.signUpForm.value.nameControl; 
+    //const name = this.signUpForm.value.nameControl; 
     const user: UserI = this.signUpForm.value;
     console.log(user);
     this.authService.signUp(user);
