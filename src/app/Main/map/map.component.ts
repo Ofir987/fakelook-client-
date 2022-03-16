@@ -6,7 +6,8 @@ import {
   ActionType,
   CameraService,
 } from 'angular-cesium';
-import { Observable, of } from 'rxjs';
+import { map, mergeMap, Observable, of } from 'rxjs';
+import { PostService } from 'src/app/Services/post.service';
 const randomLocation = require('random-location');
 
 @Component({
@@ -16,7 +17,7 @@ const randomLocation = require('random-location');
   providers: [ViewerConfiguration],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  constructor(private viewerConf: ViewerConfiguration) {
+  constructor(private viewerConf: ViewerConfiguration,private postService: PostService) {
     viewerConf.viewerOptions = {
       selectionIndicator: false,
       timeline: false,
@@ -39,6 +40,18 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.camera = this.map.getCameraService();
   }
   ngOnInit(): void {
+    this.entities$ = this.postService.getAllPosts$().pipe(
+      map((posts) => {
+        console.log(posts);
+        return posts.map((post) => ({
+          // id: post.id,
+          id: post.id.toString(),
+          actionType: ActionType.ADD_UPDATE,
+          entity: {...post,location :{x:post.x_Position,y:post.y_Position,z:post.z_Position}},
+        }));
+      }),
+      mergeMap((entity) => entity)
+    );     
   }
   goHome(): void {
     navigator.geolocation.getCurrentPosition(

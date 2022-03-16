@@ -16,7 +16,19 @@
     [context]="this"
     [debug]="true"
   >
-    <ac-billboard-desc
+  
+  <ac-html-desc props="{position: entity.location, show: true}">
+    <ng-template let-entity>
+      <div class="map-post">
+        <!-- (click)="showFullPost(entity) -->
+        <div>
+          <img src="{{ entity.imgSource }}" />
+        </div>
+        <div class="post-description">{{ entity.description }}</div>
+      </div>
+    </ng-template>
+  </ac-html-desc>
+    <!-- <ac-billboard-desc
       props="{ position: entity.position,
                             image : 'https://preview.ibb.co/cpDuwF/angular_cesium.png',
                             scale: 0.05,
@@ -30,6 +42,6 @@
          pixelOffset : [-15,20] | pixelOffset
       }"
     >
-    </ac-label-desc>
+    </ac-label-desc> -->
   </ac-layer>
 </ac-map>
