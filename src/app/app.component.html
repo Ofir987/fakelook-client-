@@ -4,3 +4,10 @@
 
 <app-add-new-post> </app-add-new-post>
 
+<button (click)="getPosts()"> get post </button>
+
+<div *ngFor="let postEl of posts">
+
+    {{postEl}}
+
+</div>

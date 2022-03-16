@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PostI } from './Models/post.model';
 import { PostService } from './Services/post.service';
 
 @Component({
@@ -8,7 +10,16 @@ import { PostService } from './Services/post.service';
 })
 export class AppComponent {
   title = 'fakelook-client';
-    constructor(postService: PostService){}
+    constructor(private postService: PostService, private cdr:ChangeDetectorRef){}
 
+    posts$?: Observable<PostI[]>;
+
+    posts?:PostI[];
+
+    getPosts(){
+      this.posts$ =  this.postService.getAllPosts$()
+      this.posts$.subscribe((posts)=> {this.posts = posts; 
+        this.cdr.markForCheck()});
+    }
 
 }
