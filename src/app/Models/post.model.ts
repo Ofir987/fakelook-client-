@@ -5,11 +5,12 @@ import { UserTaggedPostI } from "./userTaggedPost.model";
 
 export class PostI{
     constructor( 
+        public id: number,
         public description:string,
         public imgSource: string,
-        public X_Position: number,
-        public Y_Position: number,
-        public Z_Position: number,
+        public x_Position: number,
+        public y_Position: number,
+        public z_Position: number,
         public date: Date,
         public userId: number,
         public likes?: LikeI,

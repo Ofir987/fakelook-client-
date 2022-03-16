@@ -29,9 +29,9 @@ export class AddNewPostComponent implements OnInit {
 
     const post: PostI = this.addPostForm.value;
     post.date = new Date();
-    post.X_Position = 1;
-    post.Y_Position = 1; 
-    post.Z_Position = 1; 
+    post.x_Position = 1;
+    post.y_Position = 1; 
+    post.z_Position = 1; 
     // navigator.geolocation.getCurrentPosition((data)=>{
     //   const { latitude, longitude } = data.coords;
     //   const position = Cesium.Cartesian3.fromDegrees(longitude, latitude);
