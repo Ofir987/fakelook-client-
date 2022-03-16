@@ -21,6 +21,7 @@ import { FriendsComponent } from './friendships/friends/friends.component';
 import { FriendsListComponent } from './friendships/friends/friends-list/friends-list.component';
 import { FriendComponent } from './friendships/friends/friends-list/friend/friend.component';
 import { GroupsComponent } from './friendships/groups/groups.component';
+import { AngularCesiumModule, AngularCesiumWidgetsModule } from 'angular-cesium';
 
 // import { AngularCesiumModule } from '@angular-cesium';
 
@@ -47,7 +48,8 @@ import { GroupsComponent } from './friendships/groups/groups.component';
     MatFormFieldModule,
     MatCardModule,
     ReactiveFormsModule,
-    // AngularCesiumModule.forRoot()
+    AngularCesiumModule.forRoot(),
+    AngularCesiumWidgetsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
