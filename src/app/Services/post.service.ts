@@ -18,16 +18,21 @@ export class PostService {
   addPost(post: PostI): void {
     const currentUrl = `${this.url}Post/Add`;
      var token = localStorage.getItem("token");
+     var id = localStorage.getItem("id");
+
 
     // const headers = new HttpHeaders({
     //   Authorization: 'Bearer ' + token,
     // });
+
+    post.userId = JSON.parse(id?id:'');
 
     this.subs.push(
       this.http.post<any>(currentUrl, post,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}`
       })
       }).subscribe((res) => {
+
         // this.setToken(res.token);
         // this.router.navigateByUrl('/Secret');
       })
@@ -39,11 +44,13 @@ export class PostService {
     const currentUrl = `${this.url}Post/Add`;
     var token = localStorage.getItem("token");
 
+    // 'Authorization':`Bearer ${token}
     this.subs.push(
       this.http.post<any>(currentUrl, filters,{
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}`
+        headers: new HttpHeaders({ 'Content-Type': 'application/json'
       })
       }).subscribe((res) => {
+        console.log(res);
         // this.setToken(res.token);
         // this.router.navigateByUrl('/Secret');
       })

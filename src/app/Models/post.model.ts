@@ -11,6 +11,7 @@ export class PostI{
         public Y_Position: number,
         public Z_Position: number,
         public date: Date,
+        public userId: number,
         public likes?: LikeI,
         public comments?: CommentI,
         public tags?: TagI[],
