@@ -15,10 +15,12 @@ import { AddNewPostComponent } from './main-screen/add-new-post/add-new-post.com
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
-import { CommentsComponent } from './comments/comments.component';
-import { CommentsListComponent } from './comments/comments-list/comments-list.component';
-import { CommentComponent } from './comments/comments-list/comment/comment.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FriendshipsComponent } from './friendships/friendships.component';
+import { FriendsComponent } from './friendships/friends/friends.component';
+import { FriendsListComponent } from './friendships/friends/friends-list/friends-list.component';
+import { FriendComponent } from './friendships/friends/friends-list/friend/friend.component';
+import { GroupsComponent } from './friendships/groups/groups.component';
 
 // import { AngularCesiumModule } from '@angular-cesium';
 
@@ -28,9 +30,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MainScreenComponent,
     MapComponent,
     AddNewPostComponent,
-    CommentsComponent,
-    CommentsListComponent,
-    CommentComponent
+    FriendshipsComponent,
+    FriendsComponent,
+    FriendsListComponent,
+    FriendComponent,
+    GroupsComponent,
   ],
   imports: [
     BrowserModule,
