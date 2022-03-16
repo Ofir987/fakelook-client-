@@ -59,12 +59,12 @@ export class PostService {
     );
   }
 
-  getAllPosts(): Observable<any> {
+  getAllPosts$(): Observable<PostI[]> {
     const currentUrl = `${this.url}Post/GetAll`;
     var token = localStorage.getItem("token");
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token,
     });
-    return this.http.get<any>(currentUrl, { headers });
+    return this.http.get<PostI[]>(currentUrl, { headers });
   }
 }
