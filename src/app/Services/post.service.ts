@@ -46,8 +46,8 @@ export class PostService {
 
     // 'Authorization':`Bearer ${token}
     this.subs.push(
-      this.http.post<any>(currentUrl, filters,{
-        headers: new HttpHeaders({ 'Content-Type': 'application/json'
+      this.http.post<PostI[]>(currentUrl, filters,{
+        headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization':`Bearer ${token}`
       })
       }).subscribe((res) => {
         console.log(res);

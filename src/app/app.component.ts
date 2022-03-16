@@ -8,7 +8,7 @@ import { PostService } from './Services/post.service';
 })
 export class AppComponent {
   title = 'fakelook-client';
-
+    constructor(postService: PostService){}
 
 
 }
