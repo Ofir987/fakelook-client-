@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FilterI } from '../Models/filters.model';
 import { PostI } from '../Models/post.model';
 
@@ -44,16 +44,27 @@ export class PostService {
     const currentUrl = `${this.url}Post/Add`;
     var token = localStorage.getItem("token");
 
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token,
+      
+    });
     // 'Authorization':`Bearer ${token}
     this.subs.push(
-      this.http.post<PostI[]>(currentUrl, filters,{
-        headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization':`Bearer ${token}`
-      })
-      }).subscribe((res) => {
+      this.http.post<PostI[]>(currentUrl,{headers}).subscribe((res) => {
+        //filters;
         console.log(res);
         // this.setToken(res.token);
         // this.router.navigateByUrl('/Secret');
       })
     );
+  }
+
+  getAllPosts$(): Observable<PostI[]> {
+    const currentUrl = `${this.url}Post/GetAll`;
+    var token = localStorage.getItem("token");
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token,
+    });
+    return this.http.get<PostI[]>(currentUrl, { headers });
   }
 }

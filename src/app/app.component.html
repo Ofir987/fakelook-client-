@@ -4,4 +4,11 @@
 
 <!-- <app-add-new-post> </app-add-new-post> -->
 
-<app-map> </app-map>
+<!-- <app-map> </app-map> -->
+<button (click)="getPosts()"> get post </button>
+
+<div *ngFor="let postEl of posts">
+
+    {{postEl}}
+
+</div>
