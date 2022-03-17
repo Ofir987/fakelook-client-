@@ -6,8 +6,8 @@ import {
   ActionType,
   CameraService,
 } from 'angular-cesium';
-import { map, mergeMap, Observable, of } from 'rxjs';
-import { PostService } from 'src/app/Services/post.service';
+import { map, mergeMap, Observable, of, tap } from 'rxjs';
+import { PostService } from '../../../Services/post.service';
 const randomLocation = require('random-location');
 
 @Component({
@@ -51,7 +51,11 @@ export class MapComponent implements OnInit, AfterViewInit {
         }));
       }),
       mergeMap((entity) => entity)
-    );     
+    ).pipe(tap((post:any)=> {
+      let x = 2;
+      console.log(post.imgSorce);
+      console.log(post.description);
+    }));     
   }
   goHome(): void {
     navigator.geolocation.getCurrentPosition(

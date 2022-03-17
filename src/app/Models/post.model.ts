@@ -7,7 +7,7 @@ export class PostI{
     constructor( 
         public id: number,
         public description:string,
-        public imgSource: string,
+        public imageSorce: string,
         public x_Position: number,
         public y_Position: number,
         public z_Position: number,
