@@ -25,6 +25,9 @@ import { PostsMenuComponent } from './Main/posts-menu/posts-menu.component';
 import { PostsDialogComponent } from './Main/posts-dialog/posts-dialog.component';
 import { PostsDisplayComponent } from './Main/posts-display/posts-display.component';
 import { PostsFormComponent } from './Main/posts-form/posts-form.component';
+import { PostsComponent } from './Main/posts/posts.component';
+import { PostsListComponent } from './Main/posts/posts-list/posts-list.component';
+import { PostComponent } from './Main/posts/posts-list/post/post.component';
 
 // import { AngularCesiumModule } from '@angular-cesium';
 
@@ -42,6 +45,9 @@ import { PostsFormComponent } from './Main/posts-form/posts-form.component';
     PostsDialogComponent,
     PostsDisplayComponent,
     PostsFormComponent,
+    PostsComponent,
+    PostsListComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

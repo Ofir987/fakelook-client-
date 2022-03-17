@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostsDialogComponent } from './posts-dialog.component';
+import { PostsListComponent } from './posts-list.component';
 
-describe('PostsDialogComponent', () => {
-  let component: PostsDialogComponent;
-  let fixture: ComponentFixture<PostsDialogComponent>;
+describe('PostsListComponent', () => {
+  let component: PostsListComponent;
+  let fixture: ComponentFixture<PostsListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostsDialogComponent ]
+      declarations: [ PostsListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostsDialogComponent);
+    fixture = TestBed.createComponent(PostsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
