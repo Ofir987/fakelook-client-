@@ -37,12 +37,14 @@
     position: relative;
   }
   .map-post {
-    width: 5vw;
+    width: 7vw;
     background-color: aliceblue;
     cursor: pointer;
   }
   .post-description {
     padding: 0.5em;
+    overflow: auto;
+
   }
   img {
     width: 100%;

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PostService } from 'src/app/Services/post.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PostI } from 'src/app/Models/post.model';
+import { PostI } from '../../../Models/post.model';
+import { PostService } from '../../../Services/post.service';
 
 @Component({
   selector: 'app-add-new-post',

@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './Auth/auth.module';
-import { AddNewPostComponent } from './Main/add-new-post/add-new-post.component';
+import { AddNewPostComponent } from './Main/main-screen/add-new-post/add-new-post.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -20,14 +20,12 @@ import { FriendsListComponent } from './friendships/friends/friends-list/friends
 import { FriendComponent } from './friendships/friends/friends-list/friend/friend.component';
 import { GroupsComponent } from './friendships/groups/groups.component';
 import { AngularCesiumModule, AngularCesiumWidgetsModule } from 'angular-cesium';
-import { MapComponent } from './Main/map/map.component';
-import { PostsMenuComponent } from './Main/posts-menu/posts-menu.component';
-import { PostsDialogComponent } from './Main/posts-dialog/posts-dialog.component';
-import { PostsDisplayComponent } from './Main/posts-display/posts-display.component';
-import { PostsFormComponent } from './Main/posts-form/posts-form.component';
-import { PostsComponent } from './Main/posts/posts.component';
-import { PostsListComponent } from './Main/posts/posts-list/posts-list.component';
-import { PostComponent } from './Main/posts/posts-list/post/post.component';
+import { MainScreenComponent } from './Main/main-screen/main-screen.component';
+
+import { PostsComponent } from './Main/main-screen/posts/posts.component';
+import { PostsListComponent } from './Main/main-screen/posts/posts-list/posts-list.component';
+import { PostComponent } from './Main/main-screen/posts/posts-list/post/post.component';
+import { MapComponent } from './Main/main-screen/map/map.component';
 
 // import { AngularCesiumModule } from '@angular-cesium';
 
@@ -41,13 +39,10 @@ import { PostComponent } from './Main/posts/posts-list/post/post.component';
     FriendsListComponent,
     FriendComponent,
     GroupsComponent,
-    PostsMenuComponent,
-    PostsDialogComponent,
-    PostsDisplayComponent,
-    PostsFormComponent,
     PostsComponent,
     PostsListComponent,
     PostComponent,
+    MainScreenComponent,
   ],
   imports: [
     BrowserModule,
