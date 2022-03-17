@@ -26,6 +26,7 @@ import { PostsComponent } from './Main/main-screen/posts/posts.component';
 import { PostsListComponent } from './Main/main-screen/posts/posts-list/posts-list.component';
 import { PostComponent } from './Main/main-screen/posts/posts-list/post/post.component';
 import { MapComponent } from './Main/main-screen/map/map.component';
+import { FilterFormComponent } from './Main/main-screen/filter-form/filter-form.component';
 
 // import { AngularCesiumModule } from '@angular-cesium';
 
@@ -43,6 +44,7 @@ import { MapComponent } from './Main/main-screen/map/map.component';
     PostsListComponent,
     PostComponent,
     MainScreenComponent,
+    FilterFormComponent,
   ],
   imports: [
     BrowserModule,

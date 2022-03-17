@@ -7,7 +7,6 @@ export class FilterI{
         public publishers?: string[],
         public dateFrom?: Date,
         public dateTo?: Date,
-        public radius?: number,
         public tags?: string[],
         public usersTaggedInPostId?: string[] //userName 
     ){}
