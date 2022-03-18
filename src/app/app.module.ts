@@ -13,6 +13,8 @@ import { AddNewPostComponent } from './Main/main-screen/add-new-post/add-new-pos
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { FriendshipsComponent } from './friendships/friendships.component';
 import { FriendsComponent } from './friendships/friends/friends.component';
@@ -21,11 +23,15 @@ import { FriendComponent } from './friendships/friends/friends-list/friend/frien
 import { GroupsComponent } from './friendships/groups/groups.component';
 import { AngularCesiumModule, AngularCesiumWidgetsModule } from 'angular-cesium';
 import { MainScreenComponent } from './Main/main-screen/main-screen.component';
+import {MatInputModule} from '@angular/material/input';
 
 import { PostsComponent } from './Main/main-screen/posts/posts.component';
-import { PostsListComponent } from './Main/main-screen/posts/posts-list/posts-list.component';
-import { PostComponent } from './Main/main-screen/posts/posts-list/post/post.component';
+import { PostComponent } from './Main/main-screen/post/post.component';
 import { MapComponent } from './Main/main-screen/map/map.component';
+import {MatIconModule} from '@angular/material/icon';
+import { CommentsComponent } from './Main/main-screen/comments/comments.component';
+import { CommentComponent } from './Main/main-screen/comment/comment.component';
+import { PostDialogComponent } from './Main/main-screen/post-dialog/post-dialog.component';
 
 // import { AngularCesiumModule } from '@angular-cesium';
 
@@ -40,9 +46,11 @@ import { MapComponent } from './Main/main-screen/map/map.component';
     FriendComponent,
     GroupsComponent,
     PostsComponent,
-    PostsListComponent,
     PostComponent,
     MainScreenComponent,
+    CommentsComponent,
+    CommentComponent,
+    PostDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +62,9 @@ import { MapComponent } from './Main/main-screen/map/map.component';
     MatDialogModule,
     MatFormFieldModule,
     MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
     ReactiveFormsModule,
     AngularCesiumModule.forRoot(),
     AngularCesiumWidgetsModule,
