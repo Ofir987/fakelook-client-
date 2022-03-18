@@ -32,6 +32,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { CommentsComponent } from './Main/main-screen/comments/comments.component';
 import { CommentComponent } from './Main/main-screen/comment/comment.component';
 import { PostDialogComponent } from './Main/main-screen/post-dialog/post-dialog.component';
+=======
+import { FilterFormComponent } from './Main/main-screen/filter-form/filter-form.component';
 
 // import { AngularCesiumModule } from '@angular-cesium';
 
@@ -51,6 +53,7 @@ import { PostDialogComponent } from './Main/main-screen/post-dialog/post-dialog.
     CommentsComponent,
     CommentComponent,
     PostDialogComponent,
+    FilterFormComponent,
   ],
   imports: [
     BrowserModule,
