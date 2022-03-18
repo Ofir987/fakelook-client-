@@ -1,57 +1,58 @@
-<div class="display-center full-width">
-    <form [formGroup]="signUpForm" (ngSubmit)="submitPost()">
-      <div class="display-center"><h2>Sign Up</h2></div>
-      <label for="name">First Name</label>
-      <input formControlName="name" type="text" id="name" />
-      <!-- <div
-        class="error"
-        *ngIf="
-          signUpForm.controls.firstName.touched &&
-          signUpForm.controls.firstName.invalid
-        "
-      >
-        first name not valid
-      </div> -->
-      <label for="email">email</label>
-      <input formControlName="email" type="email" name="email" id="email" />
-      <label for="userName">userName</label>
-      <input formControlName="userName" type="userName" name="userName" id="userName" />
-      <!-- <div
-        class="error"
-        *ngIf="
-          signUpForm.controls.lastName.touched &&
-          signUpForm.controls.lastName.invalid
-        "
-      >
-        last name not valid
-      </div> -->
-      <label for="address">address</label>
-      <input formControlName="address" type="text" id="address" />
-      <!-- <div
-        class="error"
-        *ngIf="
-          signUpForm.controls.password.touched &&
-          signUpForm.controls.password.invalid"
-      >
-        password not valid
-      </div> -->
-      <label for="password">password</label>
-      <input formControlName="password" type="password" id="password" />
-      <!-- <div
-        class="error"
-        *ngIf="
-          signUpForm.controls.role.touched && signUpForm.controls.role.invalid
-        "
-      >
-        role not selected
-      </div> -->
-      <!-- <div class="display-center">
-        <a [routerLink]="['/Login']">Login</a>
-      </div> -->
-      <div class="display-center">
-        <button type="submit" class="btn" [disabled]="!signUpForm.valid">
-          SignUp
-        </button>
-      </div>
-    </form>
+<div class="limiter">
+  <div class="container-image">
+    <div class="wrap-login100">
+      <span class="sign-up100-form-title">
+        <h1> <strong>SIGN-UP </strong> </h1>
+      </span>
+      <mat-card class="example-card">
+        <mat-card-content>
+            <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+
+              <mat-form-field appearance="outline" class="name">
+                <mat-icon matPrefix>account_box</mat-icon>
+                <input matInput formControlName="name" type="text" placeholder="Name">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="email">
+                <mat-icon matPrefix>email</mat-icon>
+                <input matInput formControlName="email" type="email" placeholder="Email">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="userName">
+                <mat-icon matPrefix>account_box</mat-icon>
+                <input matInput formControlName="userName" type="text" placeholder="User Name">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="address">
+                <mat-icon matPrefix>location_on</mat-icon>
+                <input matInput formControlName="address" type="text" placeholder="Address">
+                <mat-error>
+                  Address is required
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-icon matPrefix>lock</mat-icon>
+                <input matInput formControlName="password" type="password" placeholder="Password"
+                  [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error>
+                  Password is required
+                </mat-error>
+              </mat-form-field>
+
+            
+              <div class="display-center">
+                <button type="submit" class="btn">
+                  SignUp
+                </button>
+              </div>
+            </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
+</div>

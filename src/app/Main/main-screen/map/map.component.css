@@ -46,6 +46,9 @@
     overflow: auto;
 
   }
+  .mat-dialog-content {
+    overflow: hidden; 
+}
   img {
     width: 100%;
   }
