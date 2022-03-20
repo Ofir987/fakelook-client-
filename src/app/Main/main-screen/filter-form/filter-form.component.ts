@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FilterI } from 'src/app/Models/filters.model';
 import { FilterService } from 'src/app/Services/filter.service';
 
 @Component({
@@ -15,11 +16,14 @@ export class FilterFormComponent implements OnInit {
     dateTo: new FormControl(''),
     tag: new FormControl(''),
     publisher: new FormControl(''),
-    usersTaggedInPostId: new FormControl('')
+    usersTaggedInPost: new FormControl('')
 
 
   })
   ngOnInit(): void {
+  }
+  submitFilter(): void{
+    const filter:FilterI= this.filterForm.value;
   }
 
 }

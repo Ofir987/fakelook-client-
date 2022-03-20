@@ -8,6 +8,6 @@ export class FilterI{
         public dateFrom?: Date,
         public dateTo?: Date,
         public tags?: string[],
-        public usersTaggedInPostId?: string[] //userName 
+        public usersTaggedInPost?: string[] //userName 
     ){}
 }
