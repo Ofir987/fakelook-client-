@@ -38,7 +38,7 @@ export class PostService {
   }
 
 
-  getPostsByFilters(filters: FilterI): void {
+  getPostsByFilters$(filters: FilterI):Observable<PostI[]> {
     const currentUrl = `${this.url}Post/Add`;
     // var token = localStorage.getItem("token");
     var token = this.getToken();
@@ -48,14 +48,8 @@ export class PostService {
       
     });
     // 'Authorization':`Bearer ${token}
-    this.subs.push(
-      this.http.post<PostI[]>(currentUrl,{headers}).subscribe((res) => {
-        //filters;
-        console.log(res);
-        // this.setToken(res.token);
-        // this.router.navigateByUrl('/Secret');
-      })
-    );
+ 
+     return this.http.post<PostI[]>(currentUrl,{headers});
   }
 
   getAllPosts$(): Observable<PostI[]> {
