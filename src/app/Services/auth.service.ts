@@ -39,9 +39,10 @@ export class AuthService {
       this.http.post<any>(currentUrl, user).subscribe((res) => {
         console.log("token",res.token);
         localStorage.setItem("token",res.token);
+        localStorage.setItem("id",JSON.stringify(res.id));
 
         // this.setToken(res.token);
-         this.router.navigateByUrl('/main');
+        //  this.router.navigateByUrl('/main');
       })
     );
   }

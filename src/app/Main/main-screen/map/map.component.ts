@@ -63,7 +63,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 
   showFullPost(entity:PostI){
-
     const dialogRef = this.dialog.open(PostDialogComponent, {
       width: 'auto',
       height: 'auto',

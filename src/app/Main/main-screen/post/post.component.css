@@ -1,6 +1,6 @@
 .example-card {
     max-width: 250px;
-    margin: 10px;
+    margin-left: 10px;
   }
   
   .example-header-image {
@@ -22,4 +22,14 @@
 
   .buttons{
     float: right;
+  }
+
+  .comments-container{
+    max-height: 150px;
+    overflow-y: auto;
+
+  }
+
+  .like, .delete{
+    color: red;
   }

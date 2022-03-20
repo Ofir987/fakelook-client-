@@ -8,7 +8,7 @@
     max-height: 100%;
 }
 ::ng-deep .mat-dialog-container{
-    padding: 0;
+    padding: 1;
     overflow-x: hidden;
     width: auto;
     height: auto;

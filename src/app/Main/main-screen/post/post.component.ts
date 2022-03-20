@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { LikeI } from 'src/app/Models/like.model';
 import { PostI } from 'src/app/Models/post.model';
 
 @Component({
@@ -10,11 +12,21 @@ import { PostI } from 'src/app/Models/post.model';
 export class PostComponent implements OnInit {
  userLike = false;
  showComments$ = new BehaviorSubject<boolean>(false);
+ currentUserId?:any;
+
  @Input() post?:PostI;
 
  @Output() showCommentPressed = new EventEmitter<boolean>();
 
-  constructor() { }
+ @Output() postToBeDeletedEvent = new EventEmitter<number>();
+
+ @Output() likeEvent = new EventEmitter<LikeI>();
+
+  constructor() { 
+    this.currentUserId = this.getCurrentUserId();
+    JSON.parse(this.currentUserId?this.currentUserId:'');
+    console.log(this.currentUserId);
+  }
 
   ngOnInit(): void {
   }
@@ -24,8 +36,23 @@ export class PostComponent implements OnInit {
     this.showCommentPressed.emit(this.showComments$.value);
   }
 
-  deletePost(postToBeDeleted:any){
-    console.log(postToBeDeleted)
+  deletePost(postIdToBeDeleted:any){
+    console.log(postIdToBeDeleted);
+    this.postToBeDeletedEvent.emit(postIdToBeDeleted);
+  }
+
+  editPost(postToEdit:any){
+
+  }
+
+  like(postId:any){
+    var like = new LikeI(true,this.currentUserId, postId);
+    this.likeEvent.emit(like);
+    
+  }
+
+  getCurrentUserId(){
+    return localStorage.getItem("id");
   }
 
 }

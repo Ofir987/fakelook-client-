@@ -1,3 +1,6 @@
 <div class="container" *ngFor="let postEl of posts$ | async">
-    <app-post [post]="postEl"> </app-post>
+    <app-post [post]="postEl" (postToBeDeletedEvent)="deletePost($event)"
+    (likeEvent)="likePost($event)"
+    > </app-post>
+    <br>
 </div>

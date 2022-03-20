@@ -14,13 +14,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FriendshipsComponent } from './friendships/friendships.component';
-import { FriendsComponent } from './friendships/friends/friends.component';
-import { FriendsListComponent } from './friendships/friends/friends-list/friends-list.component';
-import { FriendComponent } from './friendships/friends/friends-list/friend/friend.component';
-import { GroupsComponent } from './friendships/groups/groups.component';
+
 import { AngularCesiumModule, AngularCesiumWidgetsModule } from 'angular-cesium';
 import { MainScreenComponent } from './Main/main-screen/main-screen.component';
 import {MatInputModule} from '@angular/material/input';
@@ -32,8 +30,12 @@ import {MatIconModule} from '@angular/material/icon';
 import { CommentsComponent } from './Main/main-screen/comments/comments.component';
 import { CommentComponent } from './Main/main-screen/comment/comment.component';
 import { PostDialogComponent } from './Main/main-screen/post-dialog/post-dialog.component';
-=======
 import { FilterFormComponent } from './Main/main-screen/filter-form/filter-form.component';
+
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { EditPostComponent } from './Main/main-screen/edit-post/edit-post.component';
+import { SafeEmbeddedUrlPipe } from './Pipes/safe-embedded-url.pipe';
+import { UserComponent } from './friendships/user/user.component';
 
 // import { AngularCesiumModule } from '@angular-cesium';
 
@@ -43,10 +45,6 @@ import { FilterFormComponent } from './Main/main-screen/filter-form/filter-form.
     MapComponent,
     AddNewPostComponent,
     FriendshipsComponent,
-    FriendsComponent,
-    FriendsListComponent,
-    FriendComponent,
-    GroupsComponent,
     PostsComponent,
     PostComponent,
     MainScreenComponent,
@@ -54,6 +52,9 @@ import { FilterFormComponent } from './Main/main-screen/filter-form/filter-form.
     CommentComponent,
     PostDialogComponent,
     FilterFormComponent,
+    EditPostComponent,
+    SafeEmbeddedUrlPipe,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,8 +70,10 @@ import { FilterFormComponent } from './Main/main-screen/filter-form/filter-form.
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatBottomSheetModule,
     AngularCesiumModule.forRoot(),
     AngularCesiumWidgetsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
