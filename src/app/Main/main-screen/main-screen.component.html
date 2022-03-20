@@ -1,1 +1,11 @@
-<p>main-screen works!</p>
+<!-- <button mat-raised-button (click)="openBottomSheet()">Add new Post</button> -->
+
+<!-- <app-add-new-post> </app-add-new-post> -->
+<app-posts [posts$]="postsInMain$" (postIdToBeDeletedEvent)="deletePostById($event)"
+(likeEvent)="likePostById($event)"
+></app-posts> 
+
+
+
+<!-- <app-map></app-map> -->
+

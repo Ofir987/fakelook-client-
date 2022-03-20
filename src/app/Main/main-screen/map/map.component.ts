@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {
   AcMapComponent,
   AcNotification,
@@ -7,7 +8,9 @@ import {
   CameraService,
 } from 'angular-cesium';
 import { map, mergeMap, Observable, of, tap } from 'rxjs';
+import { PostI } from 'src/app/Models/post.model';
 import { PostService } from '../../../Services/post.service';
+import { PostDialogComponent } from '../post-dialog/post-dialog.component';
 const randomLocation = require('random-location');
 
 @Component({
@@ -17,7 +20,7 @@ const randomLocation = require('random-location');
   providers: [ViewerConfiguration],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  constructor(private viewerConf: ViewerConfiguration,private postService: PostService) {
+  constructor(private viewerConf: ViewerConfiguration,private postService: PostService, public dialog: MatDialog) {
     viewerConf.viewerOptions = {
       selectionIndicator: false,
       timeline: false,
@@ -57,6 +60,22 @@ export class MapComponent implements OnInit, AfterViewInit {
       console.log(post.description);
     }));     
   }
+
+
+  showFullPost(entity:PostI){
+    const dialogRef = this.dialog.open(PostDialogComponent, {
+      width: 'auto',
+      height: 'auto',
+      data: entity,
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed + result ' + result);
+    //   if(result)
+    //     this.resetForm();
+    // });
+  }
+
   goHome(): void {
     navigator.geolocation.getCurrentPosition(
       (data) => {

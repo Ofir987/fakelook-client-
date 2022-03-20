@@ -7,8 +7,11 @@ import { UserTaggedPostI } from "./userTaggedPost.model";
 export class CommentI{
     constructor( 
     public content: string,
-    public user: UserI,
-    public post: PostI,
+    // public user: UserI,
+    // public post: PostI,
+    public userId:number,
+    public userName:string,
+    public postId: number,
     public tags?: TagI[],
     public usersTaggedInPost?: UserTaggedPostI[] 
     ){}

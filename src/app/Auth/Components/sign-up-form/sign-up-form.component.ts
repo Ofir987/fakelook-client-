@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/Services/auth.service';
 })
 export class SignUpFormComponent implements OnInit {
 
+  hide = true;
+
   constructor(public authService:AuthService) { }
   signUpForm = new FormGroup({
     name: new FormControl('', [
@@ -30,7 +32,7 @@ export class SignUpFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  submitPost(): void {
+  signUp(): void {
     if(!this.signUpForm.valid)
       return;
 

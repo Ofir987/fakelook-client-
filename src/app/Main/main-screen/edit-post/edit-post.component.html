@@ -1,0 +1,16 @@
+<div class="display-center full-width">
+    <form [formGroup]="editPostForm" (ngSubmit)="editPost()">
+      <div class="display-center"></div>
+      <label for="name">description</label>
+      <input formControlName="description" type="text" id="description" />
+
+      <label for="imgSource">imgSource</label>
+      <input formControlName="imgSource" type="text" id="imgSource" />
+   
+      <div class="display-center">
+        <button type="submit" class="btn">
+          Add Post
+        </button>
+      </div>
+    </form>
+  </div>

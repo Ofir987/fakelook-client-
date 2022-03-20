@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/Services/auth.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  hide = true;
+
   constructor(public authService:AuthService) { }
 
   loginForm = new FormGroup({
@@ -25,10 +27,13 @@ export class LoginFormComponent implements OnInit {
   });
 
   ngOnInit(): void {}
-  submitPost(): void {
+  
+  login(): void {
 
     if(!this.loginForm )
       return;
+
+    console.log(this.loginForm.value);
     const user: UserI = this.loginForm.value;
     this.authService.login(user);
   }

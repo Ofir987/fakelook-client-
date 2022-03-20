@@ -8,3 +8,82 @@ background-position: center;
 
 
 }
+.limiter{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    font-family: Ubuntu-Regular, sans-serif;
+    padding: 0px;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.container-image{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    font-family: Ubuntu-Regular, sans-serif;
+    margin: 0px;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    background-color: #b1b7bd;
+
+    background-image: url('https://media.istockphoto.com/photos/whitecolored-plastic-face-mask-isolated-on-a-black-background-along-picture-id1180974444?k=20&m=1180974444&s=170667a&w=0&h=NnEz8GmysxS0r-aObfmLffR8wX332EExnOv4wENxfAQ=');
+
+
+}
+
+.login100-form-title{
+    color: white;
+    text-align: center;
+
+}
+
+.example-card {
+    max-width: 260px;
+
+  }
+
+  .btn{
+  background-image: linear-gradient(to right, rgb(184, 57, 146) , rgb(233, 57, 139),rgb(255, 0, 119));
+  border-radius: 20px;
+ color: white;
+ width: 120px;
+ height: 33px;
+ border-color: transparent;
+
+  }
+
+
+  .display-center{
+    text-align: center;
+
+  }
+
+.email{
+    width: 260px;
+}
+
+
+h1{
+    color: white;
+}

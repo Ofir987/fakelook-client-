@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FriendsListComponent } from './friends-list.component';
+import { PostDialogComponent } from './post-dialog.component';
 
-describe('FriendsListComponent', () => {
-  let component: FriendsListComponent;
-  let fixture: ComponentFixture<FriendsListComponent>;
+describe('PostDialogComponent', () => {
+  let component: PostDialogComponent;
+  let fixture: ComponentFixture<PostDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FriendsListComponent ]
+      declarations: [ PostDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FriendsListComponent);
+    fixture = TestBed.createComponent(PostDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

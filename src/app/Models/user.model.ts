@@ -5,6 +5,5 @@ export class UserI{
         public password: string,
         public address: string,
         public email: string,
-        public token?: string
     ){}
 }
