@@ -21,7 +21,7 @@ export class MainScreenComponent implements OnInit {
   constructor(public postService: PostService, public likeService: LikeService, private _bottomSheet: MatBottomSheet) { }
 
   ngOnInit(): void {
-    // this.getPosts();
+     this.getPosts();
   }
 
   getPosts() {

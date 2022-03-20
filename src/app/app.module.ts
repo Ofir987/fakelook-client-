@@ -14,7 +14,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatBottomSheetModule, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FriendshipsComponent } from './friendships/friendships.component';
@@ -75,7 +75,7 @@ import { UserComponent } from './friendships/user/user.component';
     AngularCesiumWidgetsModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [{provide: MatBottomSheetRef, useValue: {}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
