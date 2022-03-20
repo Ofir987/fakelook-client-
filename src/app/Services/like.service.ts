@@ -13,23 +13,19 @@ export class LikeService {
   private url = 'https://localhost:44349/api/';
   subs: Subscription[] = [];
 
-  addLike(like: LikeI){
+  addLike(like: LikeI):Observable<LikeI> {
     const currentUrl = `${this.url}Like/Add`;
-     var token = localStorage.getItem("token");
+    var token = localStorage.getItem("token");
     //  var id = localStorage.getItem("id");
     //  like.userId = JSON.parse(id?id:'');
-     console.log( like );
+    console.log(like);
 
-    this.subs.push(
-      this.http.post<any>(currentUrl, like,{
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}`
-      })
-      }).subscribe((res) => {
-        // this.setToken(res.token);
-        // this.router.navigateByUrl('/Secret');
-      })
-    );
 
+    return this.http.post<LikeI>(currentUrl, like, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
+      })
+    });
   }
 
   // isUserLikedPost(postId :number): boolean {
@@ -38,7 +34,7 @@ export class LikeService {
   //    var userId = localStorage.getItem("id");
   //   //  like.userId = JSON.parse(id?id:'');
   //   //  console.log( like.userId );
-  
+
   //   this.subs.push(
   //     this.http.post<any>(currentUrl,{userId,postId},{
   //       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}`

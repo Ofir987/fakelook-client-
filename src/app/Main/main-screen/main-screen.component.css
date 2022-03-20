@@ -3,3 +3,31 @@
     min-width: 250px;
 
   }
+
+  /* .buttons{
+    margin-bottom: 30px;
+    margin-top: 20px; */
+    /* padding:10px; */
+  /* } */
+
+  .mode-posts{
+    float: right;
+    margin-right: 20px;
+  }
+
+  .add-friend,.friends{
+    padding:10px;
+
+  }
+
+  .parent{
+    display: flex;
+  }
+
+  .wide{
+    flex: 1;
+  }
+
+  .narrow{
+    width: 600px;
+  }

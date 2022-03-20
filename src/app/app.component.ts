@@ -16,10 +16,10 @@ export class AppComponent {
 
     posts?:PostI[];
 
-    getPosts(){
-      this.posts$ =  this.postService.getAllPosts$()
-      this.posts$.subscribe((posts)=> {this.posts = posts; 
-        this.cdr.markForCheck()});
-    }
+    // getPosts(){
+    //   this.posts$ =  this.postService.getAllPosts$()
+    //   this.posts$.subscribe((posts)=> {this.posts = posts; 
+    //     this.cdr.markForCheck()});
+    // }
 
 }
