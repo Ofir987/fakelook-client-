@@ -1,9 +1,9 @@
 
 
 
-export class AuthResponseI{
-    constructor( 
-    public id: number,
-    public token: string
-    ){}
+export class AuthResponseI {
+    constructor(
+        public id: number,
+        public token: string
+    ) { }
 }

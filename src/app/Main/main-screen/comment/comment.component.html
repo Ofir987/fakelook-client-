@@ -1,1 +1,10 @@
-<p>comment works!</p>
+<mat-card class="example-card">
+    <mat-card-title-group>
+      <mat-card-title>{{comment?.userName}}</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>
+    {{ comment?.content}}
+    {{comment?.tags}}
+    {{comment?.usersTaggedInPost}}
+    </mat-card-content>
+  </mat-card>

@@ -16,33 +16,32 @@ export class PostService {
   subs: Subscription[] = [];
 
   addPost(post: PostI): void {
+    console.log(post);
     const currentUrl = `${this.url}Post/Add`;
      var token = localStorage.getItem("token");
      var id = localStorage.getItem("id");
+     post.userId = JSON.parse(id?id:'');
+     console.log( post.userId );
 
-
-    // const headers = new HttpHeaders({
-    //   Authorization: 'Bearer ' + token,
-    // });
-
-    post.userId = JSON.parse(id?id:'');
-
-    this.subs.push(
+     this.subs.push(
       this.http.post<any>(currentUrl, post,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}`
       })
       }).subscribe((res) => {
-
         // this.setToken(res.token);
         // this.router.navigateByUrl('/Secret');
       })
     );
+
+    // return this.http.post<PostI[]>(currentUrl, post,{ headers});
+
   }
 
 
   getPostsByFilters(filters: FilterI): void {
     const currentUrl = `${this.url}Post/Add`;
-    var token = localStorage.getItem("token");
+    // var token = localStorage.getItem("token");
+    var token = this.getToken();
 
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token,
@@ -61,10 +60,29 @@ export class PostService {
 
   getAllPosts$(): Observable<PostI[]> {
     const currentUrl = `${this.url}Post/GetAll`;
-    var token = localStorage.getItem("token");
+    // var token = localStorage.getItem("token");
+    var token = this.getToken();
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token,
     });
     return this.http.get<PostI[]>(currentUrl, { headers });
   }
+
+
+  deletePost(postId:number): Observable<any>{
+    console.log(postId);
+    const currentUrl = `${this.url}Post/${postId}`;
+    var token = this.getToken();
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token,
+    });
+    return this.http.delete<any>(currentUrl, { headers });
+  }
+
+
+  getToken(){
+    return localStorage.getItem("token");
+  }
 }
+
+
