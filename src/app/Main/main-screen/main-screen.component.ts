@@ -13,11 +13,13 @@ import { AddNewPostComponent } from './add-new-post/add-new-post.component';
   styleUrls: ['./main-screen.component.css']
 })
 export class MainScreenComponent implements OnInit {
-  postsInMain$?: Observable<PostI[]>;
+  postsInMain$!: Observable<PostI[]>;
 
   likeUser?: Boolean;
 
   postToAdd?: PostI;
+
+  isMapMode =  false;
   constructor(public postService: PostService, public likeService: LikeService, private _bottomSheet: MatBottomSheet) { }
 
   ngOnInit(): void {
@@ -37,7 +39,9 @@ export class MainScreenComponent implements OnInit {
 
   likePostById(likeToPost: LikeI) {
     // this.likeUser = this.likeService.isUserLikedPost(postId);
-    this.likeService.addLike(likeToPost);
+    this.likeService.addLike(likeToPost).subscribe((data)=>
+    console.log(data)
+    );
     // this.getPosts();
   }
 

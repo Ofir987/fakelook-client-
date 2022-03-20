@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
   AcMapComponent,
@@ -20,6 +20,9 @@ const randomLocation = require('random-location');
   providers: [ViewerConfiguration],
 })
 export class MapComponent implements OnInit, AfterViewInit {
+  // @Input() posts$!: Observable<PostI[]>;
+  entities$!: Observable<AcNotification>;
+
   constructor(private viewerConf: ViewerConfiguration,private postService: PostService, public dialog: MatDialog) {
     viewerConf.viewerOptions = {
       selectionIndicator: false,
@@ -36,7 +39,6 @@ export class MapComponent implements OnInit, AfterViewInit {
     };
   }
   @ViewChild('map') map!: AcMapComponent;
-  entities$!: Observable<AcNotification>;
   private camera!: CameraService;
   Cesium = Cesium;
   ngAfterViewInit(): void {
@@ -45,6 +47,8 @@ export class MapComponent implements OnInit, AfterViewInit {
   
   ngOnInit(): void {
     this.entities$ = this.postService.getAllPosts$().pipe(
+
+    // this.entities$ = this.posts$.pipe(
       map((posts) => {
         console.log(posts);
         return posts.map((post) => ({
@@ -62,7 +66,6 @@ export class MapComponent implements OnInit, AfterViewInit {
     }));     
   }
 
-
   showFullPost(entity:PostI){
     const dialogRef = this.dialog.open(PostDialogComponent, {
       width: 'auto',
@@ -77,44 +80,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     // });
   }
 
-  goHome(): void {
-    navigator.geolocation.getCurrentPosition(
-      (data) => {
-        const { latitude, longitude } = data.coords;
-        const position = Cesium.Cartesian3.fromDegrees(longitude, latitude);
-        const entity = {
-          id: 'my-home',
-          position,
-        };
-        this.entities$ = of({
-          id: entity.id,
-          actionType: ActionType.ADD_UPDATE,
-          entity,
-        });
-        this.zoomToLocation(position, 1000);
-      },
-      (err) => {
-        console.log(err);
-      },
-      { enableHighAccuracy: true, timeout: 10000 }
-    );
-  }
-  goRandom(): void {
-    const randomStart = {
-      latitude: 37.7768006 * Math.random(),
-      longitude: -122.4187928 * Math.random(),
-    };
-    const radius = 5000000000 * Math.random(); // meters
-    const { latitude, longitude } = randomLocation.randomCirclePoint(
-      randomStart,
-      radius
-    );
-
-    this.zoomToLocation(
-      Cesium.Cartesian3.fromDegrees(longitude, latitude),
-      100000
-    );
-  }
+ 
   private zoomToLocation(position: any, zoom: number): void {
     this.camera.cameraFlyTo({
       destination: position,

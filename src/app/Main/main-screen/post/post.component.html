@@ -1,48 +1,51 @@
-<mat-card class="example-card">
-    <mat-card-header>
-        <div *ngIf="post?.userId == currentUserId">
-            <mat-card-title>
-                <!-- ngIf="post.userEmail == current user " -->
-                {{ post?.user?.name }}
-                <button mat-icon-button (click)="deletePost(post?.id)">
-                    <mat-icon class="delete">delete</mat-icon>
-                </button>
-                <button mat-icon-button (click)="editPost(post)">
-                    <mat-icon>edit</mat-icon>
-                </button>
-            </mat-card-title>
-        </div>
-    </mat-card-header>
-    <img mat-card-image src="{{ post?.imageSorce }} ">
-    <mat-card-content>
-        <p>
-            {{post?.description}}
-        </p>
-        <br>
-        <p>
-            <strong>{{ post?.date | date:'mediumDate' }} </strong>
-        </p>
-    </mat-card-content>
-    <mat-card-actions>
+<!-- <div class="post"> -->
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div *ngIf="post?.userId == currentUserId">
+                <mat-card-title>
+                    <!-- ngIf="post.userEmail == current user " -->
+                    {{ post?.user?.name }}
+                    <button mat-icon-button (click)="deletePost(post?.id)">
+                        <mat-icon class="delete">delete</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="editPost(post)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </mat-card-title>
+            </div>
+        </mat-card-header>
+        <img mat-card-image src="{{ post?.imageSorce }} ">
+        <mat-card-content>
+            <p>
+                {{post?.description}}
+            </p>
+            <br>
+            <p>
+                <strong>{{ post?.date | date:'mediumDate' }} </strong>
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
 
-        {{ post?.likes?.length }}
+            {{ post?.likes?.length }}
 
-        <button mat-icon-button (click)="like(post?.id)">
-            <mat-icon class="like">{{ userLike ? 'favorite' : 'favorite_border' }}</mat-icon>
-        </button>
-        <button mat-icon-button (click)="openComments()">
-            <mat-icon> comment</mat-icon>
-        </button>
-    </mat-card-actions>
-</mat-card>
+            <button mat-icon-button (click)="like(post?.id)">
+                <mat-icon class="like">{{ userLike ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+            <button mat-icon-button (click)="openComments()">
+                <mat-icon> comment</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
 
-<div class="comments-container" *ngIf="showComments$ | async">
-    <app-comments [comments]="post?.comments"> </app-comments>
-    <form class="example-form">
-        <mat-form-field class="example-full-width" appearance="legacy">
-            <mat-label>Leave a comment</mat-label>
-            <textarea matInput></textarea>
-        </mat-form-field>
-        <button mat-raised-button>Add</button>
-    </form>
-</div>
+    <div class="comments-container" *ngIf="showComments$ | async">
+        <app-comments [comments]="post?.comments"> </app-comments>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput></textarea>
+            </mat-form-field>
+            <button mat-raised-button>Add</button>
+        </form>
+    </div>
+
+<!-- </div> -->

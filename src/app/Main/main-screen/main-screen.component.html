@@ -1,33 +1,43 @@
-<!-- <button mat-raised-button (click)="openBottomSheet()">Add new Post</button> -->
 <!-- 
 <app-add-new-post> </app-add-new-post> -->
-<app-posts [posts$]="postsInMain$" (postIdToBeDeletedEvent)="deletePostById($event)"
-(likeEvent)="likePostById($event)"
-></app-posts> 
+
 
 <!-- <app-map> </app-map> -->
 
 <!-- <app-map></app-map> -->
 
-<!-- <div class="container">
-    <div class="row">
-      <div class="col">
-        1 of 2
-      </div>
-      <div class="col">
-        2 of 2
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        1 of 3
-      </div>
-      <div class="col">
-        2 of 3
-      </div>
-      <div class="col">
-        3 of 3
-      </div>
-    </div>
+<!-- <div class="buttons">
+    <button mat-raised-button class="add-friend" (click)="openBottomSheet()">Add new Post</button>
+    <button mat-raised-button class="friends">Friends</button>
+    <button class="mode-posts"mat-fab color="primary">
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
   </div>
-   -->
+    <div class="row">
+    <div class="col-sm-4"><app-posts [posts$]="postsInMain$" (postIdToBeDeletedEvent)="deletePostById($event)"
+        (likeEvent)="likePostById($event)"></app-posts>  </div> --> 
+
+<!-- <div class="col-sm-8">
+        <app-map [posts$]="postsInMain$" > 
+        </app-map>
+      </div>
+    </div>  -->
+
+<!-- <app-map > 
+    </app-map> -->
+<div class="buttons">
+  <button mat-raised-button class="add-friend" (click)="openBottomSheet()">Add new Post</button>
+  <button mat-raised-button class="friends">Friends</button>
+  <button class="mode-posts" mat-fab color="primary">
+    <mat-icon>swap_horiz</mat-icon>
+  </button>
+</div>
+
+<div class="parent">
+  <div class="narrow">
+  </div>
+  <div class="wide">
+    <app-posts [posts$]="postsInMain$" (postIdToBeDeletedEvent)="deletePostById($event)"
+      (likeEvent)="likePostById($event)"></app-posts>
+  </div>
+</div>
