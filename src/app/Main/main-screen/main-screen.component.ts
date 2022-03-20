@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Observable } from 'rxjs';
+import { FilterI } from 'src/app/Models/filters.model';
 import { LikeI } from 'src/app/Models/like.model';
 import { PostI } from 'src/app/Models/post.model';
 import { LikeService } from 'src/app/Services/like.service';
@@ -59,5 +60,8 @@ export class MainScreenComponent implements OnInit {
     //   console.log(this.postToAdd);
     // }
   }
+   getFilters(event:FilterI){}
+  //   this.postsInMain$=this.postService.getPostsByFilters
+  // }
 
 }

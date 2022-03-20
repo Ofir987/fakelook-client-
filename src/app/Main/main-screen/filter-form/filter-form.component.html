@@ -1,5 +1,10 @@
 <div>
     <form [formGroup]="filterForm" (ngSubmit)="submitFilter()">
-
+        <input formControlName="dateFrom" type="date" placeholder="date from">
+        <input formControlName="dateTo" type="date" placeholder="date to">
+        <input formControlName="publisher" type="text" placeholder="publishers">
+        <input formControlName="tags" type="text" placeholder="tags">
+        <input formControlName="usersTaggedInPost" type="text" placeholder="users tagged">
+        <button type="submit" value="filter" id="filter">filter</button>
     </form>
 </div>

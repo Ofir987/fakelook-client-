@@ -13,6 +13,7 @@
       <mat-icon>swap_horiz</mat-icon>
     </button>
   </div>
+
     <div class="row">
     <div class="col-sm-4"><app-posts [posts$]="postsInMain$" (postIdToBeDeletedEvent)="deletePostById($event)"
         (likeEvent)="likePostById($event)"></app-posts>  </div> --> 
@@ -41,3 +42,7 @@
       (likeEvent)="likePostById($event)"></app-posts>
   </div>
 </div>
+
+<!--
+   <app-filter-form (filterEvent)="getFilters($event)"> </app-filter-form> -->
+
