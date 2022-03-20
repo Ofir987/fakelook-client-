@@ -59,9 +59,9 @@ export class AddNewPostComponent implements OnInit {
     console.log(post);
     //this.postService.addPost(post);
 
-    this._bottomSheetRef.dismiss({
-      data: post
-    });
+    this.postService.addPost(post);
+
+    this._bottomSheetRef.dismiss();
   }
   ngOnInit(): void {
   }

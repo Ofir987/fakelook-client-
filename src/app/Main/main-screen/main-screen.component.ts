@@ -21,7 +21,7 @@ export class MainScreenComponent implements OnInit {
   constructor(public postService: PostService, public likeService: LikeService, private _bottomSheet: MatBottomSheet) { }
 
   ngOnInit(): void {
-    this.getPosts();
+    // this.getPosts();
   }
 
   getPosts() {
@@ -42,13 +42,13 @@ export class MainScreenComponent implements OnInit {
   }
 
   openBottomSheet() {
-    let sheetRef = this._bottomSheet.open(AddNewPostComponent)
-    sheetRef.afterDismissed().subscribe(post => {
-      // console.log(post);
-      this.postToAdd = post;
-      this.postService.addPost(post);
+    let sheetRef = this._bottomSheet.open(AddNewPostComponent);
+    // sheetRef.afterDismissed().subscribe(post => {
+    //   // console.log(post);
+    //   this.postToAdd = post;
+    //   this.postService.addPost(post);
 
-    });
+    // });
 
     // if (this.postToAdd) {
     //   this.postService.addPost(this.postToAdd);
