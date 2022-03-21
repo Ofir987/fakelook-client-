@@ -3,6 +3,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LikeI } from 'src/app/Models/like.model';
 import { PostI } from 'src/app/Models/post.model';
+import { LikeService } from 'src/app/Services/like.service';
 
 @Component({
   selector: 'app-post',
@@ -14,7 +15,9 @@ export class PostComponent implements OnInit {
  showComments$ = new BehaviorSubject<boolean>(false);
  currentUserId?:any;
 
- @Input() post?:PostI;
+ likeUser$!: BehaviorSubject<boolean>;
+
+ @Input() post!:PostI;
 
  @Output() showCommentPressed = new EventEmitter<boolean>();
 
@@ -22,13 +25,21 @@ export class PostComponent implements OnInit {
 
  @Output() likeEvent = new EventEmitter<LikeI>();
 
-  constructor() { 
+  constructor(public likeService: LikeService) { 
     this.currentUserId = this.getCurrentUserId();
     JSON.parse(this.currentUserId?this.currentUserId:'');
-    console.log(this.currentUserId);
+    // console.log(this.currentUserId);
   }
 
   ngOnInit(): void {
+    // this.likeUser$.next(this.likeService.isUserLikedPost(this.post.id));
+    // console.log(this.post.id);
+    // this.likeUser$ =  this.likeService.isUserLikedPost(this.post.id);
+    this.userLike = this.likeService.isUserLikedPost(this.post.id);
+    console.log(this.userLike);
+
+    // console.log(this.likeService.isUserLikedPost(this.post?.id));
+
   }
 
   openComments(){
@@ -37,7 +48,7 @@ export class PostComponent implements OnInit {
   }
 
   deletePost(postIdToBeDeleted:any){
-    console.log(postIdToBeDeleted);
+    // console.log(postIdToBeDeleted);
     this.postToBeDeletedEvent.emit(postIdToBeDeleted);
   }
 
@@ -46,9 +57,9 @@ export class PostComponent implements OnInit {
   }
 
   like(postId:any){
-    var like = new LikeI(true,this.currentUserId, postId);
+    // console.log(postId);
+    var like = new LikeI(this.likeUser$.getValue(),this.currentUserId, postId);
     this.likeEvent.emit(like);
-    
   }
 
   getCurrentUserId(){

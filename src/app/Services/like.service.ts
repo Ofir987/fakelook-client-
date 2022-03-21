@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { __values } from 'tslib';
 import { LikeI } from '../Models/like.model';
 
 @Injectable({
@@ -10,39 +11,90 @@ export class LikeService {
 
   constructor(private http: HttpClient) { }
 
+  private like$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
+  like = false;
   private url = 'https://localhost:44349/api/';
   subs: Subscription[] = [];
 
-  addLike(like: LikeI):Observable<LikeI> {
+  addLike(like: LikeI): void {
     const currentUrl = `${this.url}Like/Add`;
     var token = localStorage.getItem("token");
     //  var id = localStorage.getItem("id");
     //  like.userId = JSON.parse(id?id:'');
     console.log(like);
-
-
-    return this.http.post<LikeI>(currentUrl, like, {
+    this.http.post<LikeI>(currentUrl, like, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
       })
+    }).subscribe((res) => {
+      console.log(res);
+      this.like$.next(true);
     });
   }
 
-  // isUserLikedPost(postId :number): boolean {
-  //   const currentUrl = `${this.url}Like/IsCurrentUserLiked`;
-  //    var token = localStorage.getItem("token");
-  //    var userId = localStorage.getItem("id");
-  //   //  like.userId = JSON.parse(id?id:'');
-  //   //  console.log( like.userId );
+  removeLike(like: LikeI): void {
+    const currentUrl = `${this.url}Like/RemoveLike`;
+    var token = localStorage.getItem("token");
+    //  var id = localStorage.getItem("id");
+    //  like.userId = JSON.parse(id?id:'');
+    console.log(like);
+    this.http.put<LikeI>(currentUrl, like, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
+      })
+    }).subscribe((res) => {
+      console.log("res", res);
+      this.like$.next(false);
+    });
+  }
 
-  //   this.subs.push(
-  //     this.http.post<any>(currentUrl,{userId,postId},{
-  //       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}`
-  //     })
-  //     }).subscribe((res) => {
-  //       // this.setToken(res.token);
-  //       // this.router.navigateByUrl('/Secret');
-  //     })
-  //   );
-  // }
+  getLike$() {
+    return this.like$;
+  }
+
+  isUserLikedPost(postId: number): boolean {
+    console.log(postId);
+    var userId = localStorage.getItem("id");
+
+    const currentUrl = `${this.url}Like/IsCurrentUserLiked?userId=${userId}&postId=${postId}`;
+    var token = localStorage.getItem("token");
+    //  like.userId = JSON.parse(id?id:'');
+    //  console.log( like.userId );
+
+    let obj = { userId: userId, postId: postId };
+    let json = JSON.stringify(obj);
+
+    this.http.post<boolean>(currentUrl, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      })
+    }).subscribe((res) => {
+      // this.like$.next(res);
+      console.log(res);
+      this.like = res; 
+      // this.setToken(res.token);
+      // this.router.navigateByUrl('/Secret');
+    });
+
+    console.log(this.like);
+
+    return this.like;
+
+
+    // this.http.post<any>(currentUrl, {
+    //   headers: new HttpHeaders({
+    //     'Authorization': `Bearer ${token}`
+    //   })
+    // }).subscribe((res) => {
+    //   this.like$.next(res);
+    //   console.log("sub",res);
+    //   this.like = res; 
+    //   // this.setToken(res.token);
+    //   // this.router.navigateByUrl('/Secret');
+    // });
+
+
+    // return this.like;
+  }
 }

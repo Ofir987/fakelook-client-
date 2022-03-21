@@ -89,7 +89,7 @@ export class AddNewPostComponent implements OnInit {
     console.log(post);
     //this.postService.addPost(post);
 
-    // this.postService.addPost(post);
+    this.postService.addPost(post);
 
     this._bottomSheetRef.dismiss();
   }

@@ -16,8 +16,6 @@ import { AddNewPostComponent } from './add-new-post/add-new-post.component';
 export class MainScreenComponent implements OnInit {
   postsInMain$!: Observable<PostI[]>;
 
-  likeUser?: Boolean;
-
   postToAdd?: PostI;
 
   isMapMode =  false;
@@ -25,6 +23,8 @@ export class MainScreenComponent implements OnInit {
 
   ngOnInit(): void {
      this.getPosts();
+    //  this.likeUser$ = this.likeService.getLike$();
+
   }
 
   getPosts() {
@@ -41,9 +41,9 @@ export class MainScreenComponent implements OnInit {
 
   likePostById(likeToPost: LikeI) {
     // this.likeUser = this.likeService.isUserLikedPost(postId);
-    this.likeService.addLike(likeToPost).subscribe((data)=>
-    console.log(data)
-    );
+    this.likeService.addLike(likeToPost);
+    // this.likeUser$ = this.likeService.getLike$();
+    console.log("likeinmain")
     // this.getPosts();
   }
 
