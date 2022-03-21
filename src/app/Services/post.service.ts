@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { FilterI } from '../Models/filters.model';
 import { PostI } from '../Models/post.model';
 
@@ -15,6 +15,8 @@ export class PostService {
   private url = 'https://localhost:44349/api/';
   subs: Subscription[] = [];
 
+  private posts$: BehaviorSubject<PostI[]> = new BehaviorSubject<PostI[]>([]);
+
   addPost(post: PostI): void {
     console.log(post);
     const currentUrl = `${this.url}Post/Add`;
@@ -27,11 +29,16 @@ export class PostService {
       this.http.post<any>(currentUrl, post,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}`
       })
-      }).subscribe((res) => {
+      }).subscribe((res:PostI) => {
+        console.log(res);
+        const current =  this.posts$.getValue();
+        this.posts$.next([post,...current]);
         // this.setToken(res.token);
         // this.router.navigateByUrl('/Secret');
       })
     );
+
+   
 
     // return this.http.post<PostI[]>(currentUrl, post,{ headers});
 
@@ -54,14 +61,31 @@ export class PostService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}` })});
   }
 
+  // getAllPosts$(): Observable<PostI[]> {
+  //   const currentUrl = `${this.url}Post/GetAll`;
+  //   // var token = localStorage.getItem("token");
+  //   var token = this.getToken();
+  //   const headers = new HttpHeaders({
+  //     Authorization: 'Bearer ' + token,
+  //   });
+  //   return this.http.get<PostI[]>(currentUrl, { headers });
+  // }
+
   getAllPosts$(): Observable<PostI[]> {
+
     const currentUrl = `${this.url}Post/GetAll`;
     // var token = localStorage.getItem("token");
     var token = this.getToken();
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token,
     });
-    return this.http.get<PostI[]>(currentUrl, { headers });
+
+    this.http.get<PostI[]>(currentUrl, { headers })
+    .subscribe((data)=> this.posts$.next(data));
+
+  return this.posts$.asObservable();
+   // posts$ = new Subject().next(this.http.get<PostI[]>(currentUrl, { headers }).subscribe();
+  //  return this.http.get<PostI[]>(currentUrl, { headers });
   }
 
 

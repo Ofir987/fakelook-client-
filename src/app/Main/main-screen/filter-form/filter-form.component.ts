@@ -20,6 +20,7 @@ export class FilterFormComponent implements OnInit {
   })
   ngOnInit(): void {
   }
+
   submitFilter(): void{
     const filter:FilterI= this.filterForm.value;
     var tags = this.filterForm.value.tags;
@@ -28,10 +29,18 @@ export class FilterFormComponent implements OnInit {
     var userTaggedArr= userTagged.split(",");//TODO@
     var publishers = this.filterForm.value.publishers;
     var publishersArr= publishers.split(",");
-    
-    console.log(filter, tagsArr,userTaggedArr );
 
-    this.filterEvent.emit(new FilterI(publishersArr,filter.dateFrom,filter.dateTo,tagsArr,userTaggedArr));
+   var dateFrom = this.filterForm.value.dateFrom;
+   if(dateFrom = null)
+      dateFrom = new Date('January 1, 1 23:15:30');
+   var dateTo = this.filterForm.value.dateTo;
+   if(dateTo = null)
+    dateTo = new Date('January 1, 1 23:15:30');
+
+
+    console.log(dateFrom, dateTo );
+
+    this.filterEvent.emit(new FilterI(publishersArr,dateFrom,dateTo,tagsArr,userTaggedArr));
   }
 
 }

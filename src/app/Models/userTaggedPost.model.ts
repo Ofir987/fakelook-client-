@@ -3,7 +3,7 @@ import { UserI } from "./user.model";
 
 export class UserTaggedPostI{
     constructor( 
-        public user:UserI,
-        public post: PostI
+        public userName:string,
+        public postId: number
     ){}
 }

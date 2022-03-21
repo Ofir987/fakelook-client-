@@ -29,9 +29,10 @@ export class MainScreenComponent implements OnInit {
 
   getPosts() {
     this.postsInMain$ = this.postService.getAllPosts$();
-    this.postsInMain$.subscribe((posts) => {
-      console.log(posts)
-    });
+    
+    // this.postsInMain$.subscribe((posts) => {
+    //   console.log(posts)
+    // });
   }
 
   deletePostById(event: number) {

@@ -36,6 +36,11 @@
     overflow: hidden;
     position: relative;
   } */
+
+  :host
+  {
+    width: 100%;
+  }
   .map-post {
     width: 7vw;
     background-color: aliceblue;
@@ -50,4 +55,6 @@
     overflow: hidden; 
 }
   
-  
+ac-map{
+position: relative;
+}
