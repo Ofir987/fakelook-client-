@@ -1,18 +1,19 @@
-<!-- <div class="post"> -->
+<div class="post">
     <mat-card class="example-card">
         <mat-card-header>
-            <div *ngIf="post?.userId == currentUserId">
-                <mat-card-title>
-                    <!-- ngIf="post.userEmail == current user " -->
-                    {{ post?.user?.name }}
+            <mat-card-title>
+                <!-- ngIf="post.userEmail == current user " -->
+                {{ post?.user?.name }}
+                <div *ngIf="post?.userId == currentUserId">
                     <button mat-icon-button (click)="deletePost(post?.id)">
                         <mat-icon class="delete">delete</mat-icon>
                     </button>
                     <button mat-icon-button (click)="editPost(post)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                </mat-card-title>
-            </div>
+                </div>
+
+            </mat-card-title>
         </mat-card-header>
         <img mat-card-image src="{{ post?.imageSorce }} ">
         <mat-card-content>
@@ -48,4 +49,4 @@
         </form>
     </div>
 
-<!-- </div> -->
+</div>

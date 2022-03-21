@@ -29,20 +29,17 @@
 <div class="buttons">
   <button mat-raised-button class="add-friend" (click)="openBottomSheet()">Add new Post</button>
   <button mat-raised-button class="friends">Friends</button>
-  <button class="mode-posts" mat-fab color="primary">
+  <button class="mode-posts" mat-fab color="primary" (click)="changeMode()">
     <mat-icon>swap_horiz</mat-icon>
   </button>
 </div>
 
 <div class="parent">
   <div class="narrow">
+    <app-filter-form (filterEvent)="getFilters($event)"> </app-filter-form>  
   </div>
   <div class="wide">
     <app-posts [posts$]="postsInMain$" (postIdToBeDeletedEvent)="deletePostById($event)"
       (likeEvent)="likePostById($event)"></app-posts>
   </div>
 </div>
-
-<!--
-   <app-filter-form (filterEvent)="getFilters($event)"> </app-filter-form> -->
-

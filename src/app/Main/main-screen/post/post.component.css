@@ -1,6 +1,5 @@
 .example-card {
     max-width: 500px;
-    /* margin-left: 10px; */
   }
   
   .example-form {
@@ -31,4 +30,6 @@
   }
 
 
-  
+  .post{
+    align-content: center;
+  }
