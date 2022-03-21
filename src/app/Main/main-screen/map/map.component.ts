@@ -20,7 +20,7 @@ const randomLocation = require('random-location');
   providers: [ViewerConfiguration],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  // @Input() posts$!: Observable<PostI[]>;
+  @Input() posts$!: Observable<PostI[]>;
   entities$!: Observable<AcNotification>;
 
   constructor(private viewerConf: ViewerConfiguration,private postService: PostService, public dialog: MatDialog) {
@@ -46,24 +46,22 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
   
   ngOnInit(): void {
-    this.entities$ = this.postService.getAllPosts$().pipe(
+    // this.entities$ = this.postService.getAllPosts$().pipe(
 
-    // this.entities$ = this.posts$.pipe(
+    this.entities$ = this.posts$.pipe(
       map((posts) => {
         console.log(posts);
         return posts.map((post) => ({
           // id: post.id,
           id: post.id.toString(),
           actionType: ActionType.ADD_UPDATE,
-          entity: {...post,location :{x:post.x_Position,y:post.y_Position,z:post.z_Position}},
+          entity: {...post, location:Cesium.Cartesian3.fromDegrees(post.x_Position,  post.y_Position)
+          },
         }));
-      }),
+      })
+      ,
       mergeMap((entity) => entity)
-    ).pipe(tap((post:any)=> {
-      let x = 2;
-      console.log(post.imgSorce);
-      console.log(post.description);
-    }));     
+    );     
   }
 
   showFullPost(entity:PostI){

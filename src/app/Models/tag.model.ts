@@ -4,7 +4,7 @@ import { PostI } from "./post.model";
 export class TagI{
     constructor( 
         public content:string,
-        public comments: CommentI[],
-        public posts: PostI[]
+        public commentId?: number,
+        public postId?: number
     ){}
 }
