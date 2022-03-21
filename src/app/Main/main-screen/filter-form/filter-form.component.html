@@ -1,10 +1,37 @@
-<div>
-    <form [formGroup]="filterForm" (ngSubmit)="submitFilter()">
-        <input formControlName="dateFrom" type="date" placeholder="date from">
-        <input formControlName="dateTo" type="date" placeholder="date to">
-        <input formControlName="publisher" type="text" placeholder="publishers">
-        <input formControlName="tags" type="text" placeholder="tags">
-        <input formControlName="usersTaggedInPost" type="text" placeholder="users tagged">
-        <button type="submit" value="filter" id="filter">filter</button>
-    </form>
-</div>
+<mat-card class="example-card">
+    <mat-card-content>
+        <form class="form" [formGroup]="filterForm" (ngSubmit)="submitFilter()">
+            <mat-form-field appearance="outline" class="date">
+                <mat-icon matPrefix>filter_alt</mat-icon>
+                <mat-label>Date From:</mat-label>
+                <input matInput formControlName="dateFrom" type="date">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="date">
+                <mat-icon matPrefix>filter_alt</mat-icon>
+                <mat-label>Date To:</mat-label>
+                <input matInput formControlName="dateTo" type="date">
+            </mat-form-field>
+            <mat-form-field  appearance="outline" class="publishers">
+                <mat-icon matPrefix>filter_alt</mat-icon>
+                <mat-label>Publishers</mat-label>
+                <input matInput formControlName="publishers" type="text">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" class="tags">
+                <mat-icon matPrefix>filter_alt</mat-icon>
+                <mat-label>Tags:</mat-label>
+                <input matInput formControlName="tags" type="text">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="users tagged">
+                <mat-icon matPrefix>filter_alt</mat-icon>
+                <mat-label>Users Tagged In Post:</mat-label>
+                <input matInput formControlName="usersTaggedInPost" type="text">
+            </mat-form-field>
+            <br>
+            <button mat-fab color="primary" type="submit">
+                <mat-icon>add</mat-icon>
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>

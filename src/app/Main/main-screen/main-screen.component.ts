@@ -60,8 +60,13 @@ export class MainScreenComponent implements OnInit {
     //   console.log(this.postToAdd);
     // }
   }
-   getFilters(event:FilterI){}
-  //   this.postsInMain$=this.postService.getPostsByFilters
-  // }
+   getFilters(event:FilterI){
+    // this.postsInMain$=
+    this.postService.getPostsByFilters$(event).subscribe((data)=>console.log(data));
+  }
+
+  changeMode(){
+    
+  }
 
 }
