@@ -42,9 +42,9 @@ export class PostComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    console.log(this.post.likes!.length);
-    this.userLike = this.post.likes!.some((like)=> like.userId == this.currentUserId);
-    this.numberOfLikes = this.post.likes!.length;
+    // console.log(this.post.likes!.length);
+    this.userLike = this.post.likes?.some((like)=> like.userId == this.currentUserId) || false;
+    this.numberOfLikes = this.post.likes?.length || 0;
 
   }
 

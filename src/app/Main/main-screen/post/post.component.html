@@ -4,7 +4,7 @@
             <mat-card-title>
                 <!-- {{ post?.id }} -->
                 <!-- ngIf="post.userEmail == current user " -->
-                {{ post?.user?.name }}
+                {{ post?.user?.userName }}
                 <div *ngIf="post?.userId == currentUserId">
                     <button mat-icon-button (click)="deletePost(post?.id)">
                         <mat-icon class="delete">delete</mat-icon>

@@ -22,12 +22,10 @@ export class AuthService {
       this.http.post<AuthResponseI>(currentUrl, user).pipe().subscribe((res) => {
         localStorage.setItem("token",res.token);
         localStorage.setItem("id",JSON.stringify(res.id));
-
-        console.log("token",res.token);
-        console.log("id",res.id);
+        localStorage.setItem("userName",res.userName);
 
         // this.setToken(res.token);
-        // this.router.navigateByUrl('/main');
+        this.router.navigateByUrl('/main-screen');
       })
     );
   }
@@ -40,25 +38,11 @@ export class AuthService {
         console.log("token",res.token);
         localStorage.setItem("token",res.token);
         localStorage.setItem("id",JSON.stringify(res.id));
+        localStorage.setItem("userName",res.userName);
 
         // this.setToken(res.token);
-        //  this.router.navigateByUrl('/main');
+        this.router.navigateByUrl('/main-screen');
       })
-    );
-  }
-
-
-  // for authGuard - TODO in server
-  checkAccess(): Observable<boolean> {
-    const currentUrl = `${this.url}Auth/TestAll`;
-    var token = localStorage.getItem("token");
-
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + token,
-    });
-    return this.http.get(currentUrl, { headers }).pipe(
-      map((_) => true),
-      catchError((_) => of(false))
     );
   }
 

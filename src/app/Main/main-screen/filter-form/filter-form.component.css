@@ -1,11 +1,10 @@
 .example-card {
     max-width: 500px;
-padding: 30px;
+   padding: 30px;
   }
 
   .mat-form-field {
     width: 100%;
-
   }
 
   .form{
@@ -15,5 +14,10 @@ padding: 30px;
 
   ::ng-deep .mat-form-field-wrapper{
           width: 100%;
+  }
+
+
+  .mat-form-field-flex ng-tns-c81-0{
+    padding: 20px;
 
   }

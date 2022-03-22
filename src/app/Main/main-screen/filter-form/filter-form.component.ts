@@ -32,10 +32,10 @@ export class FilterFormComponent implements OnInit {
 
    var dateFrom = this.filterForm.value.dateFrom;
    if(dateFrom = null)
-      dateFrom = new Date('January 1, 1 23:15:30');
+      dateFrom = new Date('January 1, 1 00:00:00');
    var dateTo = this.filterForm.value.dateTo;
    if(dateTo = null)
-    dateTo = new Date('January 1, 1 23:15:30');
+    dateTo = new Date('January 1, 1 00:00:00');
 
 
     console.log(dateFrom, dateTo );

@@ -30,9 +30,9 @@ export class PostService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}`
       })
       }).subscribe((res:PostI) => {
-        console.log(res);
+        console.log(res.id);
         const current =  this.posts$.getValue();
-        this.posts$.next([post,...current]);
+        this.posts$.next([res,...current]);
         // this.setToken(res.token);
         // this.router.navigateByUrl('/Secret');
       })
@@ -45,7 +45,7 @@ export class PostService {
   }
 
 
-  getPostsByFilters$(filters: FilterI):Observable<PostI[]> {
+  getPostsByFilters$(filters: FilterI):void {
     const currentUrl = `${this.url}Post/Filter`;
     // var token = localStorage.getItem("token");
     console.log(filters);
@@ -57,8 +57,9 @@ export class PostService {
     });
     // 'Authorization':`Bearer ${token}
  
-     return this.http.post<PostI[]>(currentUrl,filters,{
-      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}` })});
+      this.http.post<PostI[]>(currentUrl,filters,{
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}` })})
+      .subscribe((data)=> this.posts$.next(data));   
   }
 
   // getAllPosts$(): Observable<PostI[]> {
