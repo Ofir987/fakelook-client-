@@ -59,6 +59,8 @@ export class PostComponent implements OnInit {
   }
 
   editPost(postToEdit:any){
+    // open in dialog edit-post Component (mat dialog - 
+    //in data pass the postToEdit and in edit-post Component show the post values in input)
 
   }
 
