@@ -1,6 +1,6 @@
 <div *ngFor="let postEl of posts$ | async">
     <app-post [post]="postEl" (postToBeDeletedEvent)="deletePost($event)"
-    (likeEvent)="likePost($event)"
+    (likeEvent)="likePost($event)" (commentInPostEvent)="commentInPosts($event)"
     > </app-post>
     <br>
 </div>

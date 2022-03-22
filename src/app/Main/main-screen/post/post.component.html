@@ -27,9 +27,9 @@
             </p>
         </mat-card-content>
         <mat-card-actions>
-            {{ post?.likes?.length }}
+            {{ numberOfLikes }}
 
-            <button mat-icon-button (click)="like(post?.id)">
+            <button mat-icon-button (click)="addLike(post?.id)">
                 <mat-icon class="like">{{ userLike? 'favorite': 'favorite_border' }}</mat-icon>
             </button>
             <button mat-icon-button (click)="openComments()">
@@ -40,13 +40,12 @@
 
     <div class="comments-container" *ngIf="showComments$ | async">
         <app-comments [comments]="post?.comments"> </app-comments>
-        <form class="example-form">
+        <form class="example-form" [formGroup]="addCommentForm" (ngSubmit)="comment(post!.id)" >
             <mat-form-field class="example-full-width" appearance="legacy">
                 <mat-label>Leave a comment</mat-label>
                 <textarea matInput></textarea>
             </mat-form-field>
-            <button mat-raised-button>Add</button>
+            <button type="submit" mat-raised-button>Add</button>
         </form>
     </div>
-
 </div>
