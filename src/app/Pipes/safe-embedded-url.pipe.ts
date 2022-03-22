@@ -9,7 +9,7 @@ export class SafeEmbeddedUrlPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer){}
 
   transform(imageUrl: string) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(imageUrl);
+    return this.sanitizer.bypassSecurityTrustStyle(imageUrl);
   }
 
 }

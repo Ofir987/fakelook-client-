@@ -39,57 +39,12 @@ export class LikeService {
     //  var id = localStorage.getItem("id");
     //  like.userId = JSON.parse(id?id:'');
     console.log("removeLike",like);
-    this.http.put<LikeI>(currentUrl, like, {
+    this.http.post<LikeI>(currentUrl, like, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
       })
     }).subscribe((res) => {
       console.log("res", res);
     });
-  }
-
-  isUserLikedPost(postId: number): boolean {
-    console.log(postId);
-    var userId = localStorage.getItem("id");
-
-    const currentUrl = `${this.url}Like/IsCurrentUserLiked?userId=${userId}&postId=${postId}`;
-    var token = localStorage.getItem("token");
-    //  like.userId = JSON.parse(id?id:'');
-    //  console.log( like.userId );
-
-    let obj = { userId: userId, postId: postId };
-    let json = JSON.stringify(obj);
-
-    this.http.post<any>(currentUrl, {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${token}`
-      })
-    }).subscribe((res) => {
-      // this.like$.next(res);
-      console.log(res);
-      this.like = res; 
-      // this.setToken(res.token);
-      // this.router.navigateByUrl('/Secret');
-    });
-
-    console.log(this.like);
-
-    return this.like;
-
-
-    // this.http.post<any>(currentUrl, {
-    //   headers: new HttpHeaders({
-    //     'Authorization': `Bearer ${token}`
-    //   })
-    // }).subscribe((res) => {
-    //   this.like$.next(res);
-    //   console.log("sub",res);
-    //   this.like = res; 
-    //   // this.setToken(res.token);
-    //   // this.router.navigateByUrl('/Secret');
-    // });
-
-
-    // return this.like;
   }
 }

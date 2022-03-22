@@ -13,8 +13,8 @@
 
   .mode-posts{
   float: right;    
-  margin-right: 50px;
-  }
+  margin: 20px;
+  margin-right: 150px;}
 
   .add-friend,.friends{
     padding:30px;
@@ -33,11 +33,15 @@
     height: 100%; 
     overflow-y: auto;
     justify-content: center;
-
-    
   }
 
   .narrow{
     margin: 20px;
     height: 100%; 
   }
+
+.logout-btn{
+  float: right;
+  height: 20vh;
+  margin: 10px;
+}
