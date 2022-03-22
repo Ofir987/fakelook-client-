@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { CommentI } from 'src/app/Models/comment.model';
 import { LikeI } from 'src/app/Models/like.model';
 import { PostI } from 'src/app/Models/post.model';
 import { LikeService } from 'src/app/Services/like.service';
@@ -15,8 +17,7 @@ export class PostComponent implements OnInit {
  showComments$ = new BehaviorSubject<boolean>(false);
  currentUserId?:any;
 
- likeUser$!: BehaviorSubject<boolean>;
-
+ numberOfLikes = 0; 
  @Input() post!:PostI;
 
  @Output() showCommentPressed = new EventEmitter<boolean>();
@@ -25,20 +26,25 @@ export class PostComponent implements OnInit {
 
  @Output() likeEvent = new EventEmitter<LikeI>();
 
+ @Output() commentInPostEvent = new EventEmitter<CommentI>();
+
+
   constructor(public likeService: LikeService) { 
     this.currentUserId = this.getCurrentUserId();
     JSON.parse(this.currentUserId?this.currentUserId:'');
     // console.log(this.currentUserId);
   }
+  
+  addCommentForm = new FormGroup({
+    comment: new FormControl('', [
+      Validators.required,
+    ])
+  });
 
   ngOnInit(): void {
-    // this.likeUser$.next(this.likeService.isUserLikedPost(this.post.id));
-    // console.log(this.post.id);
-    // this.likeUser$ =  this.likeService.isUserLikedPost(this.post.id);
-    this.userLike = this.likeService.isUserLikedPost(this.post.id);
-    console.log(this.userLike);
-
-    // console.log(this.likeService.isUserLikedPost(this.post?.id));
+    console.log(this.post.likes!.length);
+    this.userLike = this.post.likes!.some((like)=> like.userId == this.currentUserId);
+    this.numberOfLikes = this.post.likes!.length;
 
   }
 
@@ -56,11 +62,24 @@ export class PostComponent implements OnInit {
 
   }
 
-  like(postId:any){
-    // console.log(postId);
-    var like = new LikeI(this.likeUser$.getValue(),this.currentUserId, postId);
+  addLike(postId:any){
+    if(!this.userLike)
+      this.numberOfLikes++;
+    else this.numberOfLikes--;
+    this.userLike = !this.userLike;
+    let like = new LikeI(!this.userLike, this.currentUserId,postId);
     this.likeEvent.emit(like);
   }
+
+  comment(postId: number){
+    if(!this.addCommentForm )
+      return;
+    let comment = new CommentI(this.addCommentForm.value,this.currentUserId,"ofir",postId)
+    this.commentInPostEvent.emit(comment);
+
+  }
+
+
 
   getCurrentUserId(){
     return localStorage.getItem("id");

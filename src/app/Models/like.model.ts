@@ -3,6 +3,7 @@ import { UserI } from "./user.model";
 
 export class LikeI{
     constructor( 
+        // public id: number,
         public isActive:boolean,
         // public user: UserI,
         // public post: PostI

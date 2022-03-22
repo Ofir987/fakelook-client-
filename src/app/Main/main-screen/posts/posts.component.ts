@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
+import { CommentI } from 'src/app/Models/comment.model';
 import { LikeI } from 'src/app/Models/like.model';
 import { PostI } from 'src/app/Models/post.model';
 
@@ -17,6 +18,9 @@ export class PostsComponent implements OnInit {
 
   @Output() likeEvent = new EventEmitter<LikeI>();
 
+  @Output() commentInPostsEvent = new EventEmitter<CommentI>();
+
+
   constructor() { }
 
   ngOnInit(): void {
@@ -28,5 +32,10 @@ export class PostsComponent implements OnInit {
 
   likePost(likeToPost:LikeI){
     this.likeEvent.emit(likeToPost);
+  }
+
+  commentInPosts(commentToPost:CommentI){
+ this.commentInPostsEvent.emit(commentToPost);
+
   }
 }

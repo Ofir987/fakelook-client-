@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Observable } from 'rxjs';
+import { CommentI } from 'src/app/Models/comment.model';
 import { FilterI } from 'src/app/Models/filters.model';
 import { LikeI } from 'src/app/Models/like.model';
 import { PostI } from 'src/app/Models/post.model';
@@ -18,18 +19,21 @@ export class MainScreenComponent implements OnInit {
 
   postToAdd?: PostI;
 
-  isMapMode =  false;
+  isMapMode = false;
+
+  isLikeMode = false;
+
   constructor(public postService: PostService, public likeService: LikeService, private _bottomSheet: MatBottomSheet) { }
 
   ngOnInit(): void {
-     this.getPosts();
+    this.getPosts();
     //  this.likeUser$ = this.likeService.getLike$();
 
   }
 
   getPosts() {
     this.postsInMain$ = this.postService.getAllPosts$();
-    
+
     // this.postsInMain$.subscribe((posts) => {
     //   console.log(posts)
     // });
@@ -41,7 +45,10 @@ export class MainScreenComponent implements OnInit {
 
   likePostById(likeToPost: LikeI) {
     // this.likeUser = this.likeService.isUserLikedPost(postId);
-    this.likeService.addLike(likeToPost);
+    if (likeToPost.isActive)
+      this.likeService.removeLike(likeToPost);
+    else
+      this.likeService.addLike(likeToPost);
     // this.likeUser$ = this.likeService.getLike$();
     console.log("likeinmain")
     // this.getPosts();
@@ -61,13 +68,17 @@ export class MainScreenComponent implements OnInit {
     //   console.log(this.postToAdd);
     // }
   }
-   getFilters(event:FilterI){
+  getFilters(event: FilterI) {
     // this.postsInMain$=
-    this.postService.getPostsByFilters$(event).subscribe((data)=>console.log(data));
+    this.postService.getPostsByFilters$(event).subscribe((data) => console.log(data));
   }
 
-  changeMode(){
-    
+  changeMode() {
+    this.isMapMode = !this.isMapMode;
+  }
+
+  commentToAdd(event:CommentI){
+    console.log(event);
   }
 
 }

@@ -29,7 +29,7 @@ export class LikeService {
       })
     }).subscribe((res) => {
       console.log(res);
-      this.like$.next(true);
+      // this.like$.next(true);
     });
   }
 
@@ -38,19 +38,14 @@ export class LikeService {
     var token = localStorage.getItem("token");
     //  var id = localStorage.getItem("id");
     //  like.userId = JSON.parse(id?id:'');
-    console.log(like);
+    console.log("removeLike",like);
     this.http.put<LikeI>(currentUrl, like, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
       })
     }).subscribe((res) => {
       console.log("res", res);
-      this.like$.next(false);
     });
-  }
-
-  getLike$() {
-    return this.like$;
   }
 
   isUserLikedPost(postId: number): boolean {
@@ -65,7 +60,7 @@ export class LikeService {
     let obj = { userId: userId, postId: postId };
     let json = JSON.stringify(obj);
 
-    this.http.post<boolean>(currentUrl, {
+    this.http.post<any>(currentUrl, {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${token}`
       })
