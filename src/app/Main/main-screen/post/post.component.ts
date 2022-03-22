@@ -36,7 +36,7 @@ export class PostComponent implements OnInit {
   }
   
   addCommentForm = new FormGroup({
-    comment: new FormControl('', [
+    content: new FormControl('', [
       Validators.required,
     ])
   });
@@ -76,7 +76,7 @@ export class PostComponent implements OnInit {
   comment(postId: number){
     if(!this.addCommentForm )
       return;
-    let comment = new CommentI(this.addCommentForm.value,this.currentUserId,"ofir",postId)
+    let comment = new CommentI(this.addCommentForm.value.content ,this.currentUserId,"ofir",postId)
     this.commentInPostEvent.emit(comment);
 
   }

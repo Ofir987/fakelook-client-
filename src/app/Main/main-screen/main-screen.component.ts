@@ -6,6 +6,7 @@ import { CommentI } from 'src/app/Models/comment.model';
 import { FilterI } from 'src/app/Models/filters.model';
 import { LikeI } from 'src/app/Models/like.model';
 import { PostI } from 'src/app/Models/post.model';
+import { CommentService } from 'src/app/Services/comment.service';
 import { LikeService } from 'src/app/Services/like.service';
 import { PostService } from '../../Services/post.service';
 import { AddNewPostComponent } from './add-new-post/add-new-post.component';
@@ -24,7 +25,8 @@ export class MainScreenComponent implements OnInit {
 
   isLikeMode = false;
 
-  constructor(public postService: PostService, public likeService: LikeService, private _bottomSheet: MatBottomSheet,private router: Router) { }
+  constructor(public postService: PostService, public likeService: LikeService, private _bottomSheet: MatBottomSheet,private router: Router,private commentService:CommentService
+    ) { }
 
   ngOnInit(): void {
     this.getPosts();
@@ -64,7 +66,7 @@ export class MainScreenComponent implements OnInit {
   }
 
   commentToAdd(event:CommentI){
-    console.log(event);
+    this.commentService.commentPost(event);
   }
 
   logout(){

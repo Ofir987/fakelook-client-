@@ -24,11 +24,11 @@ export class CommentService {
     comment.userId = JSON.parse(id ? id : '');
     console.log(comment.userId);
 
-    this.http.post<any>(currentUrl, comment, {
+    this.http.post<CommentI>(currentUrl, comment, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
       })
-    });
+    }).subscribe((data)=> console.log( "RES",data));
 
   }
 }

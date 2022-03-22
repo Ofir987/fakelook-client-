@@ -43,7 +43,7 @@
         <form class="example-form" [formGroup]="addCommentForm" (ngSubmit)="comment(post!.id)" >
             <mat-form-field class="example-full-width" appearance="legacy">
                 <mat-label>Leave a comment</mat-label>
-                <textarea matInput></textarea>
+                <textarea matInput formControlName="content"></textarea>
             </mat-form-field>
             <button type="submit" mat-raised-button>Add</button>
         </form>
