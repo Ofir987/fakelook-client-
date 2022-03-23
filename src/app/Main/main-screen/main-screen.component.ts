@@ -77,4 +77,8 @@ export class MainScreenComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  openFriends(){
+    this.router.navigate(['/friendships']);
+  }
+
 }

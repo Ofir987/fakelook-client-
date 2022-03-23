@@ -1,5 +1,6 @@
 import { CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friendships',
@@ -8,45 +9,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendshipsComponent implements OnInit {
 
-  constructor() { }
+  activeNumIndex!: number;
 
-  ngOnInit(): void {
-  }
+  constructor(private router: Router) { }
 
   todo = ['tomi', 'lolo', 'gigi', 'dudu'];
 
   done = ['lolo'];
 
-  more = ['gigi'];
+  more =['lolo'];
+
+  demo = [['lolo'],
+    // ['ofiroosh'],
+    // ['tome', 'lolo', 'gigi', 'dudu'],
+    // ['lolo', 'shimi','rubi'],
+    // ['fofo', 'mimi','toto'],
+  ]
 
   isPointerOverContainer?: boolean;
 
-  dropWithOutCopy(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-    }
+  manager?: string;
+
+  
+  ngOnInit(): void {
+    this.manager = localStorage.getItem("userName") || '';
+    this.demo = [
+      [this.manager]
+    ];
   }
 
-  dropWithCopy(event: any) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      copyArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
+  main(){
+    this.router.navigate(['/main-screen']);
+
+  }
   dragDropped(event: CdkDragDrop<string[]>) {
     this.isPointerOverContainer = event.isPointerOverContainer;
   }
@@ -54,8 +54,12 @@ export class FriendshipsComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     if (this.isPointerOverContainer) {
       if (event.previousContainer === event.container) {
-        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        moveItemInArray(this.demo[this.activeNumIndex], event.previousIndex, event.currentIndex);
       } else {
+        let idx=event.container.data.indexOf(event.previousContainer.data[event.previousIndex]);
+        if(idx != -1){
+          return;//if item exist
+        }
           copyArrayItem(event.previousContainer.data,
             event.container.data,
             event.previousIndex,
@@ -72,6 +76,19 @@ export class FriendshipsComponent implements OnInit {
     }
   }
 
+
+  enter(i:number) {
+      this.activeNumIndex = i;
+    }
+  
+    addGroup(){
+      if(this.manager !=null ){
+        var a = [this.manager];
+        this.demo.push(a);
+      }
+      console.log(this.demo);
+
+    }
   /** Predicate function that doesn't allow items to be dropped into a list. */
   noReturnPredicate() {
     return false;
