@@ -1,6 +1,7 @@
 .example-card {
     max-width: 500px;
    padding: 30px;
+   background-color: rgb(102, 99, 99);
   }
 
   .mat-form-field {

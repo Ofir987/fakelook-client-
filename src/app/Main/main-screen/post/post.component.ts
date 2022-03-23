@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CommentI } from 'src/app/Models/comment.model';
 import { LikeI } from 'src/app/Models/like.model';
 import { PostI } from 'src/app/Models/post.model';
 import { LikeService } from 'src/app/Services/like.service';
+import { EditPostComponent } from '../edit-post/edit-post.component';
 
 @Component({
   selector: 'app-post',
@@ -18,6 +20,9 @@ export class PostComponent implements OnInit {
  currentUserId?:any;
 
  numberOfLikes = 0; 
+
+ comments?:CommentI[] = [];
+
  @Input() post!:PostI;
 
  @Output() showCommentPressed = new EventEmitter<boolean>();
@@ -29,7 +34,7 @@ export class PostComponent implements OnInit {
  @Output() commentInPostEvent = new EventEmitter<CommentI>();
 
 
-  constructor(public likeService: LikeService) { 
+  constructor(public likeService: LikeService,public dialog: MatDialog) { 
     this.currentUserId = this.getCurrentUserId();
     JSON.parse(this.currentUserId?this.currentUserId:'');
     // console.log(this.currentUserId);
@@ -45,7 +50,7 @@ export class PostComponent implements OnInit {
     // console.log(this.post.likes!.length);
     this.userLike = this.post.likes?.some((like)=> like.userId == this.currentUserId) || false;
     this.numberOfLikes = this.post.likes?.length || 0;
-
+    this.comments = this.post.comments;
   }
 
   openComments(){
@@ -58,10 +63,12 @@ export class PostComponent implements OnInit {
     this.postToBeDeletedEvent.emit(postIdToBeDeleted);
   }
 
-  editPost(postToEdit:any){
-    // open in dialog edit-post Component (mat dialog - 
-    //in data pass the postToEdit and in edit-post Component show the post values in input)
-
+  editPost(postToEdit:PostI){
+    const dialogRef = this.dialog.open(EditPostComponent, {
+      width: 'auto',
+      height: 'auto',
+      data: postToEdit,
+    });
   }
 
   addLike(postId:any){
@@ -78,7 +85,7 @@ export class PostComponent implements OnInit {
       return;
     let comment = new CommentI(this.addCommentForm.value.content ,this.currentUserId,"ofir",postId)
     this.commentInPostEvent.emit(comment);
-
+    this.comments?.push(comment);
   }
 
 

@@ -23,6 +23,5 @@ export class PostDialogComponent implements OnInit {
   updateCdr(){
     this.cdr.markForCheck();
     this.dialogRef.updateSize('auto','auto');
-
   }
 }
