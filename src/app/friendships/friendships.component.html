@@ -43,7 +43,7 @@
           class="example-list"
           (cdkDropListDropped)="drop($event)"
           >
-          <div class="example-box" *ngFor="let item of more" cdkDrag>{{item}}</div>
+          <div class="example-box" *ngFor="let item of more" cdkDrag (cdkDragDropped)="dragDropped($event)">{{item}}</div>
         </div>
       </div>
   </div>

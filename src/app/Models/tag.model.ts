@@ -1,7 +1,7 @@
-import { CommentI } from "./comment.model";
-import { PostI } from "./post.model";
+import { IComment } from "./comment.model";
+import { IPost } from "./post.model";
 
-export class TagI{
+export class ITag{
     constructor( 
         public content:string,
         public commentId?: number,

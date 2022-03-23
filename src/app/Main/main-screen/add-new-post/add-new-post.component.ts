@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PostI } from '../../../Models/post.model';
+import { IPost } from '../../../Models/post.model';
 import { PostService } from '../../../Services/post.service';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { TagI } from 'src/app/Models/tag.model';
-import { UserTaggedPostI } from 'src/app/Models/userTaggedPost.model';
+import { ITag } from 'src/app/Models/tag.model';
+import { IUserTaggedPost } from 'src/app/Models/userTaggedPost.model';
 
 @Component({
   selector: 'app-add-new-post',
@@ -38,13 +38,12 @@ export class AddNewPostComponent implements OnInit {
     if (!this.addPostForm.valid)
       return;
 
-    const post: PostI = this.addPostForm.value;
+    const post: IPost = this.addPostForm.value;
     
     post.date = new Date();
   
     console.log(new Date());
     post.imageSorce = await this.readImageFile(this.file)
-    console.log(post.imageSorce);
     
     navigator.geolocation.getCurrentPosition((data) => {
       const { latitude, longitude } = data.coords;
@@ -59,8 +58,6 @@ export class AddNewPostComponent implements OnInit {
 
 
     this.urlFile = undefined;
-
-    console.log(post);
 
     this._bottomSheetRef.dismiss();
   }

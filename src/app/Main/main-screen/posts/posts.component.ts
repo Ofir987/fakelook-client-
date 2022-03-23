@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { CommentI } from 'src/app/Models/comment.model';
-import { LikeI } from 'src/app/Models/like.model';
-import { PostI } from 'src/app/Models/post.model';
+import { IComment } from 'src/app/Models/comment.model';
+import { ILike } from 'src/app/Models/like.model';
+import { IPost } from 'src/app/Models/post.model';
 
 @Component({
   selector: 'app-posts',
@@ -12,13 +12,13 @@ import { PostI } from 'src/app/Models/post.model';
 })
 export class PostsComponent implements OnInit {
 
-  @Input() posts$?: Observable<PostI[]>;
+  @Input() posts$?: Observable<IPost[]>;
 
   @Output() postIdToBeDeletedEvent = new EventEmitter<number>();
 
-  @Output() likeEvent = new EventEmitter<LikeI>();
+  @Output() likeEvent = new EventEmitter<ILike>();
 
-  @Output() commentInPostsEvent = new EventEmitter<CommentI>();
+  @Output() commentInPostsEvent = new EventEmitter<IComment>();
 
 
   constructor() { }
@@ -30,11 +30,11 @@ export class PostsComponent implements OnInit {
     this.postIdToBeDeletedEvent.emit(postIdToBeDel);
   }
 
-  likePost(likeToPost:LikeI){
+  likePost(likeToPost:ILike){
     this.likeEvent.emit(likeToPost);
   }
 
-  commentInPosts(commentToPost:CommentI){
+  commentInPosts(commentToPost:IComment){
  this.commentInPostsEvent.emit(commentToPost);
 
   }

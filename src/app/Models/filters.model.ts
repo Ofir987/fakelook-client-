@@ -1,8 +1,8 @@
-import { TagI } from "./tag.model";
-import { UserI } from "./user.model";
-import { UserTaggedPostI } from "./userTaggedPost.model";
+import { ITag } from "./tag.model";
+import { IUser } from "./user.model";
+import { IUserTaggedPost } from "./userTaggedPost.model";
 
-export class FilterI{
+export class IFilter{
     constructor(  
         public publishers?: string[],
         public dateFrom?: Date,

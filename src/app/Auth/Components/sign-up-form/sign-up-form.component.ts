@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserI } from 'src/app/Models/user.model';
+import { IUser } from 'src/app/Models/user.model';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
@@ -37,7 +37,7 @@ export class SignUpFormComponent implements OnInit {
       return;
 
     //const name = this.signUpForm.value.nameControl; 
-    const user: UserI = this.signUpForm.value;
+    const user: IUser = this.signUpForm.value;
     console.log(user);
     this.authService.signUp(user);
   }

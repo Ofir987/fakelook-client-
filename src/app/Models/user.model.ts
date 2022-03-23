@@ -1,4 +1,4 @@
-export class UserI{
+export class IUser{
     constructor(
         public name: string, 
         public userName: string,

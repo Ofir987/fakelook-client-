@@ -1,7 +1,7 @@
-import { PostI } from "./post.model";
-import { UserI } from "./user.model";
+import { IPost } from "./post.model";
+import { IUser } from "./user.model";
 
-export class UserTaggedPostI{
+export class IUserTaggedPost{
     constructor( 
         public userName:string,
         public postId: number

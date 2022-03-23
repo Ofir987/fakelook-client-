@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { __values } from 'tslib';
-import { LikeI } from '../Models/like.model';
+import { ILike } from '../Models/like.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +17,13 @@ export class LikeService {
   private url = 'https://localhost:44349/api/';
   subs: Subscription[] = [];
 
-  addLike(like: LikeI): void {
+  addLike(like: ILike): void {
     const currentUrl = `${this.url}Like/Add`;
     var token = localStorage.getItem("token");
     //  var id = localStorage.getItem("id");
     //  like.userId = JSON.parse(id?id:'');
     console.log(like);
-    this.http.post<LikeI>(currentUrl, like, {
+    this.http.post<ILike>(currentUrl, like, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
       })
@@ -33,13 +33,13 @@ export class LikeService {
     });
   }
 
-  removeLike(like: LikeI): void {
+  removeLike(like: ILike): void {
     const currentUrl = `${this.url}Like/RemoveLike`;
     var token = localStorage.getItem("token");
     //  var id = localStorage.getItem("id");
     //  like.userId = JSON.parse(id?id:'');
     console.log("removeLike",like);
-    this.http.post<LikeI>(currentUrl, like, {
+    this.http.post<ILike>(currentUrl, like, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
       })

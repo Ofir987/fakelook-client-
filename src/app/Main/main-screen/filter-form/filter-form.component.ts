@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FilterI } from 'src/app/Models/filters.model';
+import { IFilter } from 'src/app/Models/filters.model';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./filter-form.component.css']
 })
 export class FilterFormComponent implements OnInit {
-  @Output() filterEvent= new EventEmitter<FilterI>();
+  @Output() filterEvent= new EventEmitter<IFilter>();
   constructor() { }
   filterForm= new FormGroup({
     dateFrom: new FormControl(''),
@@ -22,7 +22,7 @@ export class FilterFormComponent implements OnInit {
   }
 
   submitFilter(): void{
-    const filter:FilterI= this.filterForm.value;
+    const filter:IFilter= this.filterForm.value;
     var tagsArr = this.filterForm.value.tags;
     var tags= tagsArr.split(",");//TODO#
     var userTaggedArr = this.filterForm.value.usersTaggedInPost;
@@ -41,7 +41,7 @@ export class FilterFormComponent implements OnInit {
 
     console.log(dateFrom, dateTo );
 
-    this.filterEvent.emit(new FilterI(publishers,dateFrom,dateTo,tags,usersTaggedInPost));
+    this.filterEvent.emit(new IFilter(publishers,dateFrom,dateTo,tags,usersTaggedInPost));
   }
 
 }

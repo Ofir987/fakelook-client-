@@ -51,37 +51,25 @@ export class FriendshipsComponent implements OnInit {
     this.isPointerOverContainer = event.isPointerOverContainer;
   }
 
-  // exited(event: any) {
-    
-  //   if (this.isPointerOverContainer) {
-  //     if (event.previousContainer === event.container) {
-  //       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-  //     }
-  //   } else {
-  //     console.log("Dropped outside area.");
-  //     event.container.data.forEach((value: any,index: any)=>{
-  //       if(index ==  event.previousIndex) 
-  //       event.container.data.splice(index,1);
-  //   });
-  //   }
-  // }
-
   drop(event: CdkDragDrop<string[]>) {
     if (this.isPointerOverContainer) {
       if (event.previousContainer === event.container) {
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       } else {
-        copyArrayItem(event.previousContainer.data,
-          event.container.data,
-          event.previousIndex,
-          event.currentIndex);
+          copyArrayItem(event.previousContainer.data,
+            event.container.data,
+            event.previousIndex,
+            event.currentIndex);
       }
     } else {
       console.log("Dropped outside area.");
-          event.container.data.forEach((value: any,index: any)=>{
-        if(index ==  event.previousIndex) 
-        event.container.data.splice(index,1);
-    }); }
+      console.log(event.container.id);
+      if(event.container.id.localeCompare("cdk-drop-list-0")!=0)
+      {event.container.data.forEach((value: any, index: any) => {
+        if (index == event.previousIndex)
+          event.container.data.splice(index, 1);
+      });}
+    }
   }
 
   /** Predicate function that doesn't allow items to be dropped into a list. */
