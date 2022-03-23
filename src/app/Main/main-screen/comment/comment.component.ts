@@ -13,6 +13,7 @@ export class CommentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.comment);
   }
 
 }

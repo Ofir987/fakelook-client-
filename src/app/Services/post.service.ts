@@ -62,15 +62,7 @@ export class PostService {
       .subscribe((data)=> this.posts$.next(data));   
   }
 
-  // getAllPosts$(): Observable<PostI[]> {
-  //   const currentUrl = `${this.url}Post/GetAll`;
-  //   // var token = localStorage.getItem("token");
-  //   var token = this.getToken();
-  //   const headers = new HttpHeaders({
-  //     Authorization: 'Bearer ' + token,
-  //   });
-  //   return this.http.get<PostI[]>(currentUrl, { headers });
-  // }
+
 
   getAllPosts$(): Observable<PostI[]> {
 
@@ -87,6 +79,24 @@ export class PostService {
   return this.posts$.asObservable();
    // posts$ = new Subject().next(this.http.get<PostI[]>(currentUrl, { headers }).subscribe();
   //  return this.http.get<PostI[]>(currentUrl, { headers });
+  }
+
+
+  updatePost(post: PostI): void {
+    const currentUrl = `${this.url}Post/${post.id}`;
+    // var token = localStorage.getItem("token");
+    console.log(post);
+    var token = this.getToken();
+
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token,
+      
+    });
+    // 'Authorization':`Bearer ${token}
+ 
+      this.http.put<PostI>(currentUrl,post,{
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}` })})
+      .subscribe((data)=> console.log(post));   
   }
 
 

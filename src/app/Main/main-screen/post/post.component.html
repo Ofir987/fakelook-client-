@@ -39,13 +39,13 @@
     </mat-card>
 
     <div class="comments-container" *ngIf="showComments$ | async">
-        <app-comments [comments]="post?.comments"> </app-comments>
+        <app-comments [comments]="comments"> </app-comments>
         <form class="example-form" [formGroup]="addCommentForm" (ngSubmit)="comment(post!.id)" >
             <mat-form-field class="example-full-width" appearance="legacy">
                 <mat-label>Leave a comment</mat-label>
                 <textarea matInput formControlName="content"></textarea>
             </mat-form-field>
-            <button type="submit" mat-raised-button>Add</button>
+            <button class="add-comment" type="submit" mat-raised-button>Add</button>
         </form>
     </div>
 </div>
