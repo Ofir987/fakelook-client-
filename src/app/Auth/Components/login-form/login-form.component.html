@@ -25,11 +25,21 @@
                 Password is required
               </mat-error>
             </mat-form-field>
-
+            <div class="forgotPassword">
+              <p> 
+                <a style="cursor: pointer;" (click)=directForgotPassword() class="herfsignup">Forgot Password?</a>
+              </p>
+            </div>
             <div class="display-center">
               <button type="submit" class="btn">
                 LOGIN
               </button>
+            </div>
+            <br>
+            <div class="signup">
+              <p class="notmember"> Not a member?
+                <a style="cursor: pointer;" (click)=directToSignUp() class="herfsignup"> Sign Up</a>
+              </p>
             </div>
           </form>
         </mat-card-content>

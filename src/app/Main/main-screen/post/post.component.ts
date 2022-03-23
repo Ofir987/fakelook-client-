@@ -33,6 +33,8 @@ export class PostComponent implements OnInit {
 
  @Output() commentInPostEvent = new EventEmitter<CommentI>();
 
+ firstTimeLiked = false;
+
 
   constructor(public likeService: LikeService,public dialog: MatDialog) { 
     this.currentUserId = this.getCurrentUserId();
@@ -47,6 +49,7 @@ export class PostComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    console.log("init post");
     // console.log(this.post.likes!.length);
     this.userLike = this.post.likes?.some((like)=> like.userId == this.currentUserId) || false;
     this.numberOfLikes = this.post.likes?.length || 0;
@@ -72,6 +75,7 @@ export class PostComponent implements OnInit {
   }
 
   addLike(postId:any){
+    console.log("addLike post");
     if(!this.userLike)
       this.numberOfLikes++;
     else this.numberOfLikes--;

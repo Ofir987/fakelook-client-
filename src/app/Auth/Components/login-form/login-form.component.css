@@ -87,3 +87,26 @@ background-position: center;
 h1{
     color: white;
 }
+
+a:link{
+    color: rgb(23, 114, 233);
+}
+
+a:visited{
+    color: rgb(23, 114, 233);
+}
+
+.notmember{
+    color: rgb(155,158,161);
+}
+
+.herfsignup{
+    color: rgb(23,114,233);
+}
+
+.signup{
+    text-align: right;
+    font-size: 12px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}

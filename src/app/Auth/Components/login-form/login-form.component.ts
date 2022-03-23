@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserI } from 'src/app/Models/user.model';
 import { AuthService } from 'src/app/Services/auth.service';
 
@@ -12,7 +13,7 @@ export class LoginFormComponent implements OnInit {
 
   hide = true;
 
-  constructor(public authService:AuthService) { }
+  constructor(public authService:AuthService,private router: Router) { }
 
   loginForm = new FormGroup({
     email: new FormControl('', [
@@ -39,4 +40,12 @@ export class LoginFormComponent implements OnInit {
     
   }
 
+  directToSignUp(){
+    this.router.navigateByUrl('/sign-up');
+  }
+
+  directForgotPassword(){
+    this.router.navigateByUrl('/forgot-password');
+
+  }
 }

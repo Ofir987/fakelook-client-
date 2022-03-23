@@ -11,16 +11,25 @@
               <mat-form-field appearance="outline" class="name">
                 <mat-icon matPrefix>account_box</mat-icon>
                 <input matInput formControlName="name" type="text" placeholder="Name">
+                <mat-error>
+                  Name is required
+                </mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="email">
                 <mat-icon matPrefix>email</mat-icon>
                 <input matInput formControlName="email" type="email" placeholder="Email">
+                <mat-error>
+                  Email is required
+                </mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="userName">
                 <mat-icon matPrefix>account_box</mat-icon>
                 <input matInput formControlName="userName" type="text" placeholder="User Name">
+                <mat-error>
+                  UserName is required
+                </mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="address">

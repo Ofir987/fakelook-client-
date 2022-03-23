@@ -114,6 +114,11 @@ export class PostService {
   getToken(){
     return localStorage.getItem("token");
   }
+
+
+  getPosts(){
+    return this.posts$;
+  }
 }
 
 
