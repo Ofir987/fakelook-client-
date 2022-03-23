@@ -20,10 +20,10 @@
   <ac-html-desc props="{position: entity.location, show: true}">
     <ng-template let-entity>
       <div class="map-post">
-        <div>
+        <!-- <div> -->
           <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/BOSOM_BUDDIES.jpg/1200px-BOSOM_BUDDIES.jpg" /> -->
-          <img width="30px" src="{{ entity.imageSorce }}" (click)="showFullPost(entity)" />
-        </div>
+          <img width="70px" height="70px" src="{{ entity.imageSorce }}" (click)="showFullPost(entity)" />
+        <!-- </div> -->
         <div class="post-description">{{ entity.description }}</div>
       </div>
     </ng-template>

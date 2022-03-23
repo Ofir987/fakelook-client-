@@ -11,13 +11,13 @@
                 <mat-label>Date To:</mat-label>
                 <input matInput formControlName="dateTo" type="date">
             </mat-form-field>
-            <mat-form-field  appearance="outline" class="publishers">
+            <mat-form-field appearance="outline" class="publishers">
                 <mat-icon matPrefix>filter_alt</mat-icon>
                 <mat-label>Publishers</mat-label>
                 <input matInput formControlName="publishers" type="text">
             </mat-form-field>
 
-            <mat-form-field  appearance="outline" class="tags">
+            <mat-form-field appearance="outline" class="tags">
                 <mat-icon matPrefix>filter_alt</mat-icon>
                 <mat-label>Tags:</mat-label>
                 <input matInput formControlName="tags" type="text">
@@ -28,10 +28,13 @@
                 <mat-label>Users Tagged In Post:</mat-label>
                 <input matInput formControlName="usersTaggedInPost" type="text">
             </mat-form-field>
+
             <br>
-            <button mat-fab color="primary" type="submit">
-                <mat-icon>add</mat-icon>
-            </button>
+            <div class="btn">
+                <button mat-fab color="primary" type="submit">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
         </form>
     </mat-card-content>
 </mat-card>

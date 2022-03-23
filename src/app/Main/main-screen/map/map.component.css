@@ -42,7 +42,7 @@
     width: 100%;
   }
   .map-post {
-    width: 7vw;
+    /* width: 7vw; */
     background-color: aliceblue;
     cursor: pointer;
   }

@@ -1,0 +1,19 @@
+.example-card {
+    max-width: 500px;
+    /* min-height: auto; */
+  }
+
+  .display-center{
+    text-align: center;
+
+  }
+
+  .example-full-width{
+    width: 100%;
+  }
+
+  ::ng-deep .mat-dialog-container{
+    padding: 1;
+    overflow-x: hidden;
+    width: 500px;
+  }

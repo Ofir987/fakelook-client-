@@ -64,6 +64,8 @@ export class MainScreenComponent implements OnInit {
   }
   changeMode() {
     this.isMapMode = !this.isMapMode;
+    // this.getPosts();
+    this.postsInMain$ = this.postService.getPosts();
   }
 
   commentToAdd(event:CommentI){
