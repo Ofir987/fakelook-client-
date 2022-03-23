@@ -16,6 +16,8 @@ export class AddNewPostComponent implements OnInit {
   Cesium = Cesium;
   file: any;
 
+  urlFile: any;
+
   constructor(public postService: PostService, private _bottomSheetRef: MatBottomSheetRef<AddNewPostComponent>) { }
 
   addPostForm = new FormGroup({
@@ -41,7 +43,7 @@ export class AddNewPostComponent implements OnInit {
     post.date = new Date();
   
     console.log(new Date());
-    post.imageSorce = await this.readImageFile(this.file);
+    post.imageSorce = await this.readImageFile(this.file)
     console.log(post.imageSorce);
     
     navigator.geolocation.getCurrentPosition((data) => {
@@ -56,7 +58,7 @@ export class AddNewPostComponent implements OnInit {
     })
 
 
-    this.file = undefined;
+    this.urlFile = undefined;
 
     console.log(post);
 
@@ -64,6 +66,7 @@ export class AddNewPostComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+
   readImageFile(file:any):Promise<string>{
     const fileReader = new FileReader();
     return new Promise(res=>{
@@ -73,5 +76,16 @@ export class AddNewPostComponent implements OnInit {
     fileReader.readAsDataURL(file);
       })
   }
+
+  onFileSelected(event: any) {
+  //   var reader = new FileReader();
+  //   var file = reader.readAsDataURL(event.target.files[0]);
+
+  //   reader.onload = (file) => {
+  //     this.urlFile = reader.result;
+  //     console.log(this.urlFile);
+  //   };
+  }
+  
 
 }

@@ -14,11 +14,19 @@
   .mode-posts{
   float: right;    
   margin: 20px;
-  margin-right: 150px;}
+  margin-right: 400px;
+  height: 100px;
+  width: 100px;
+}
 
+.icon{height:48px !important;
+width:48px !important;
+font-size:48px !important;
+}
   .add-friend,.friends{
     padding:30px;
     margin: 20px;
+    font-size: 30px;
   }
 
   .parent{
