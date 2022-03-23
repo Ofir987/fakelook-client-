@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PostI } from 'src/app/Models/post.model';
+import { IPost } from 'src/app/Models/post.model';
 import { PostService } from 'src/app/Services/post.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { PostService } from 'src/app/Services/post.service';
 export class EditPostComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EditPostComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: PostI, private postService:PostService) { }
+    @Inject(MAT_DIALOG_DATA) public data: IPost, private postService:PostService) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +30,7 @@ export class EditPostComponent implements OnInit {
     if(!this.editPostForm.valid)
       return;
 
-    let postToEdit =  new PostI(this.data.id,this.editPostForm.value.description,this.data.imageSorce,
+    let postToEdit =  new IPost(this.data.id,this.editPostForm.value.description,this.data.imageSorce,
       this.data.x_Position,this.data.y_Position,this.data.z_Position,new Date(),this.data.userId,this.data.user);
       
       this.postService.updatePost(postToEdit);

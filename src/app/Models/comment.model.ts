@@ -1,10 +1,10 @@
-import { PostI } from "./post.model";
-import { TagI } from "./tag.model";
-import { UserI } from "./user.model";
-import { UserTaggedPostI } from "./userTaggedPost.model";
+import { IPost } from "./post.model";
+import { ITag } from "./tag.model";
+import { IUser } from "./user.model";
+import { IUserTaggedPost } from "./userTaggedPost.model";
 
 
-export class CommentI{
+export class IComment{
     constructor( 
     public content: string,
     // public user: UserI,
@@ -12,7 +12,7 @@ export class CommentI{
     public userId:number,
     public userName:string,
     public postId: number,
-    public tags?: TagI[],
-    public usersTaggedInPost?: UserTaggedPostI[] 
+    public tags?: ITag[],
+    public usersTaggedInPost?: IUserTaggedPost[] 
     ){}
 }

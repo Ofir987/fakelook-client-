@@ -1,11 +1,11 @@
 import { Observable } from "rxjs";
-import { CommentI } from "./comment.model";
-import { LikeI } from "./like.model";
-import { TagI } from "./tag.model";
-import { UserI } from "./user.model";
-import { UserTaggedPostI } from "./userTaggedPost.model";
+import { IComment } from "./comment.model";
+import { ILike } from "./like.model";
+import { ITag } from "./tag.model";
+import { IUser } from "./user.model";
+import { IUserTaggedPost } from "./userTaggedPost.model";
 
-export class PostI{
+export class IPost{
     constructor( 
         public id: number,
         public description:string,
@@ -15,10 +15,10 @@ export class PostI{
         public z_Position: number,
         public date: Date,
         public userId: number,
-        public user: UserI,
-        public likes?: LikeI[],
-        public comments?: CommentI[],
-        public tags?: TagI[],
-        public usersTaggedInPost?: UserTaggedPostI[]
+        public user: IUser,
+        public likes?: ILike[],
+        public comments?: IComment[],
+        public tags?: ITag[],
+        public usersTaggedInPost?: IUserTaggedPost[]
     ){}
 }

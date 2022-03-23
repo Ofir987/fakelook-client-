@@ -8,7 +8,7 @@ import {
   CameraService,
 } from 'angular-cesium';
 import { map, mergeMap, Observable, of, tap } from 'rxjs';
-import { PostI } from 'src/app/Models/post.model';
+import { IPost } from 'src/app/Models/post.model';
 import { PostService } from '../../../Services/post.service';
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';
 const randomLocation = require('random-location');
@@ -20,7 +20,7 @@ const randomLocation = require('random-location');
   providers: [ViewerConfiguration],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  @Input() posts$!: Observable<PostI[]>;
+  @Input() posts$!: Observable<IPost[]>;
   entities$!: Observable<AcNotification>;
 
   constructor(private viewerConf: ViewerConfiguration,private postService: PostService, public dialog: MatDialog) {
@@ -64,7 +64,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     );     
   }
 
-  showFullPost(entity:PostI){
+  showFullPost(entity:IPost){
     const dialogRef = this.dialog.open(PostDialogComponent, {
       width: 'auto',
       height: 'auto',

@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
-import { FilterI } from '../Models/filters.model';
-import { PostI } from '../Models/post.model';
+import { IFilter } from '../Models/filters.model';
+import { IPost } from '../Models/post.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +15,16 @@ export class PostService {
   private url = 'https://localhost:44349/api/';
   subs: Subscription[] = [];
 
-  private posts$: BehaviorSubject<PostI[]> = new BehaviorSubject<PostI[]>([]);
+  private posts$: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
 
-  addPost(post: PostI): void {
+  addPost(post: IPost): void {
     console.log(post);
     const currentUrl = `${this.url}Post/Add`;
      let token = localStorage.getItem("token");
      let id = localStorage.getItem("id");
+     let userName = localStorage.getItem("userName");
+
+     console.log(userName);
     //  if(id != null){
     //   post.userId = Number(id);
     //  }
@@ -29,11 +32,13 @@ export class PostService {
     //  post.userId = parseInt(id) || '';
      console.log( post.userId );
 
+    //  post.user.userName = userName || '';
+
     //  this.subs.push(
-      this.http.post<PostI>(currentUrl, post,{
+      this.http.post<IPost>(currentUrl, post,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}`
       })
-      }).subscribe((res:PostI) => {
+      }).subscribe((res:IPost) => {
         console.log(res.id);
         const current =  this.posts$.getValue();
         this.posts$.next([res,...current]);
@@ -49,7 +54,7 @@ export class PostService {
   }
 
 
-  getPostsByFilters$(filters: FilterI):void {
+  getPostsByFilters$(filters: IFilter):void {
     const currentUrl = `${this.url}Post/Filter`;
     // var token = localStorage.getItem("token");
     console.log(filters);
@@ -61,7 +66,7 @@ export class PostService {
     });
     // 'Authorization':`Bearer ${token}
  
-      this.http.post<PostI[]>(currentUrl,filters,
+      this.http.post<IPost[]>(currentUrl,filters,
         {
         headers: new HttpHeaders({'Authorization':`Bearer ${token}` })
         })
@@ -73,7 +78,7 @@ export class PostService {
 
 
 
-  getAllPosts$(): Observable<PostI[]> {
+  getAllPosts$(): Observable<IPost[]> {
 
     const currentUrl = `${this.url}Post/GetAll`;
     // var token = localStorage.getItem("token");
@@ -82,7 +87,7 @@ export class PostService {
       Authorization: 'Bearer ' + token,
     });
 
-    this.http.get<PostI[]>(currentUrl, { headers })
+    this.http.get<IPost[]>(currentUrl, { headers })
     .subscribe((data)=> this.posts$.next(data));
 
   return this.posts$.asObservable();
@@ -91,7 +96,7 @@ export class PostService {
   }
 
 
-  updatePost(post: PostI): void {
+  updatePost(post: IPost): void {
     const currentUrl = `${this.url}Post/${post.id}`;
     // var token = localStorage.getItem("token");
     console.log(post);
@@ -103,7 +108,7 @@ export class PostService {
     });
     // 'Authorization':`Bearer ${token}
  
-      this.http.put<PostI>(currentUrl,post,{
+      this.http.put<IPost>(currentUrl,post,{
       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}` })})
       .subscribe((data)=> console.log(post));   
   }

@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CommentI } from 'src/app/Models/comment.model';
-import { LikeI } from 'src/app/Models/like.model';
-import { PostI } from 'src/app/Models/post.model';
+import { IComment } from 'src/app/Models/comment.model';
+import { ILike } from 'src/app/Models/like.model';
+import { IPost } from 'src/app/Models/post.model';
 import { LikeService } from 'src/app/Services/like.service';
 import { EditPostComponent } from '../edit-post/edit-post.component';
 
@@ -21,27 +21,33 @@ export class PostComponent implements OnInit {
 
  numberOfLikes = 0; 
 
- comments?:CommentI[] = [];
+ comments?:IComment[] = [];
 
  imgSrc!:string;
 
- @Input() post!:PostI;
+ @Input() post!:IPost;
 
  @Output() showCommentPressed = new EventEmitter<boolean>();
 
  @Output() postToBeDeletedEvent = new EventEmitter<number>();
 
- @Output() likeEvent = new EventEmitter<LikeI>();
+ @Output() likeEvent = new EventEmitter<ILike>();
 
- @Output() commentInPostEvent = new EventEmitter<CommentI>();
+ @Output() commentInPostEvent = new EventEmitter<IComment>();
 
  firstTimeLiked = false;
 
+ currentUserName?: string;
+
+ @ViewChild(FormGroupDirective)
+ formGroupDirective!: FormGroupDirective;
 
   constructor(public likeService: LikeService,public dialog: MatDialog) { 
     this.currentUserId = this.getCurrentUserId();
     //JSON.parse(this.currentUserId?this.currentUserId:'');
      console.log(this.currentUserId);
+     this.currentUserName = localStorage.getItem("userName") || '';
+  
   }
   
   addCommentForm = new FormGroup({
@@ -69,7 +75,7 @@ export class PostComponent implements OnInit {
     this.postToBeDeletedEvent.emit(postIdToBeDeleted);
   }
 
-  editPost(postToEdit:PostI){
+  editPost(postToEdit:IPost){
     const dialogRef = this.dialog.open(EditPostComponent, {
       width: 'auto',
       height: 'auto',
@@ -83,16 +89,18 @@ export class PostComponent implements OnInit {
       this.numberOfLikes++;
     else this.numberOfLikes--;
     this.userLike = !this.userLike;
-    let like = new LikeI(!this.userLike, this.currentUserId,postId);
+    let like = new ILike(!this.userLike, this.currentUserId,postId);
     this.likeEvent.emit(like);
   }
 
   comment(postId: number){
-    if(!this.addCommentForm )
+    if(!this.addCommentForm.valid )
       return;
-    let comment = new CommentI(this.addCommentForm.value.content ,this.currentUserId,"ofir",postId)
+    let comment = new IComment(this.addCommentForm.value.content ,this.currentUserId,'',postId)
     this.commentInPostEvent.emit(comment);
     this.comments?.push(comment);
+    this.formGroupDirective.resetForm();
+    this.addCommentForm.reset();
   }
 
 

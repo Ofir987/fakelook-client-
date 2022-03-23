@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserI } from 'src/app/Models/user.model';
+import { IUser } from 'src/app/Models/user.model';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class LoginFormComponent implements OnInit {
       return;
 
     console.log(this.loginForm.value);
-    const user: UserI = this.loginForm.value;
+    const user: IUser = this.loginForm.value;
     this.authService.login(user);
     
   }

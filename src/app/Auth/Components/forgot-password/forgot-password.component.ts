@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserI } from 'src/app/Models/user.model';
+import { IUser } from 'src/app/Models/user.model';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
@@ -36,7 +36,7 @@ export class ForgotPasswordComponent implements OnInit {
       return;
 
     this.isLoading = true;
-    this.authService.forgotPassword(new UserI(this.forgotPasswordForm.value.name, "", "", "",
+    this.authService.forgotPassword(new IUser(this.forgotPasswordForm.value.name, "", "", "",
       this.forgotPasswordForm.value.email,
     )).subscribe((data) => {
       this.userPassword = data.msg

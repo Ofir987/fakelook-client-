@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CommentI } from 'src/app/Models/comment.model';
-import { FilterI } from 'src/app/Models/filters.model';
-import { LikeI } from 'src/app/Models/like.model';
-import { PostI } from 'src/app/Models/post.model';
+import { IComment } from 'src/app/Models/comment.model';
+import { IFilter } from 'src/app/Models/filters.model';
+import { ILike } from 'src/app/Models/like.model';
+import { IPost } from 'src/app/Models/post.model';
 import { CommentService } from 'src/app/Services/comment.service';
 import { LikeService } from 'src/app/Services/like.service';
 import { PostService } from '../../Services/post.service';
@@ -17,9 +17,9 @@ import { AddNewPostComponent } from './add-new-post/add-new-post.component';
   styleUrls: ['./main-screen.component.css']
 })
 export class MainScreenComponent implements OnInit {
-  postsInMain$!: Observable<PostI[]>;
+  postsInMain$!: Observable<IPost[]>;
 
-  postToAdd?: PostI;
+  postToAdd?: IPost;
 
   isMapMode = false;
 
@@ -46,7 +46,7 @@ export class MainScreenComponent implements OnInit {
     this.postService.deletePost(event).subscribe();
   }
 
-  likePostById(likeToPost: LikeI) {
+  likePostById(likeToPost: ILike) {
     if (likeToPost.isActive)
       this.likeService.removeLike(likeToPost);
     else
@@ -57,7 +57,7 @@ export class MainScreenComponent implements OnInit {
   openBottomSheet() {
     let sheetRef = this._bottomSheet.open(AddNewPostComponent);
   }
-  getFilters(event: FilterI) {
+  getFilters(event: IFilter) {
     // this.postsInMain$=
     console.log(event, "in main");
     this.postService.getPostsByFilters$(event);
@@ -68,7 +68,7 @@ export class MainScreenComponent implements OnInit {
     this.postsInMain$ = this.postService.getPosts();
   }
 
-  commentToAdd(event:CommentI){
+  commentToAdd(event:IComment){
     this.commentService.commentPost(event);
   }
 

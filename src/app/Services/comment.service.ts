@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CommentI } from '../Models/comment.model';
+import { IComment } from '../Models/comment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +16,18 @@ export class CommentService {
 
   // private posts$: BehaviorSubject<PostI[]> = new BehaviorSubject<PostI[]>([]);
 
-  commentPost(comment: CommentI): void {
+  commentPost(comment: IComment): void {
     console.log(comment);
     const currentUrl = `${this.url}Comment/Add`;
     var token = localStorage.getItem("token");
     var id = localStorage.getItem("id");
+    var userName = localStorage.getItem("userName");
+
     comment.userId = JSON.parse(id ? id : '');
     console.log(comment.userId);
+    comment.userName=userName || '';
 
-    this.http.post<CommentI>(currentUrl, comment, {
+    this.http.post<IComment>(currentUrl, comment, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
       })

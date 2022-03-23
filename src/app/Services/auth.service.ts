@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserI } from '../Models/user.model';
+import { IUser } from '../Models/user.model';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of, Subscription } from 'rxjs';
-import { AuthResponseI } from '../Models/authRespone.model';
+import { IAuthResponse } from '../Models/authRespone.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,10 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  signUp(user: UserI): void {
+  signUp(user: IUser): void {
     const currentUrl = `${this.url}Auth/SignUp`;
     this.subs.push(
-      this.http.post<AuthResponseI>(currentUrl, user).pipe().subscribe((res) => {
+      this.http.post<IAuthResponse>(currentUrl, user).pipe().subscribe((res) => {
         localStorage.setItem("token", res.token);
         localStorage.setItem("id", JSON.stringify(res.id));
         localStorage.setItem("userName", res.userName);
@@ -31,7 +31,7 @@ export class AuthService {
   }
 
 
-  login(user: UserI): void {
+  login(user: IUser): void {
     const currentUrl = `${this.url}Auth/Login`;
     this.subs.push(
       this.http.post<any>(currentUrl, user).subscribe((res) => {
@@ -47,7 +47,7 @@ export class AuthService {
   }
 
 
-  forgotPassword(user: UserI) {
+  forgotPassword(user: IUser) {
     const currentUrl = `${this.url}Auth/ForgotPassword`;
     var token = localStorage.getItem("token");
 
