@@ -57,9 +57,14 @@ export class PostService {
     });
     // 'Authorization':`Bearer ${token}
  
-      this.http.post<PostI[]>(currentUrl,filters,{
-      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}` })})
-      .subscribe((data)=> this.posts$.next(data));   
+      this.http.post<PostI[]>(currentUrl,filters,
+        {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization':`Bearer ${token}` })
+        })
+      .subscribe((data:any)=> {this.posts$.next(data);
+         }); 
+      
+      let x = 4;  
   }
 
 

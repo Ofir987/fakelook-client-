@@ -59,6 +59,7 @@ export class MainScreenComponent implements OnInit {
   }
   getFilters(event: FilterI) {
     // this.postsInMain$=
+    console.log(event, "in main");
     this.postService.getPostsByFilters$(event);
   }
   changeMode() {

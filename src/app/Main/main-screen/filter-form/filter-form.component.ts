@@ -23,24 +23,25 @@ export class FilterFormComponent implements OnInit {
 
   submitFilter(): void{
     const filter:FilterI= this.filterForm.value;
-    var tags = this.filterForm.value.tags;
-    var tagsArr= tags.split(",");//TODO#
-    var userTagged = this.filterForm.value.usersTaggedInPost;
-    var userTaggedArr= userTagged.split(",");//TODO@
-    var publishers = this.filterForm.value.publishers;
-    var publishersArr= publishers.split(",");
+    var tagsArr = this.filterForm.value.tags;
+    var tags= tagsArr.split(",");//TODO#
+    var userTaggedArr = this.filterForm.value.usersTaggedInPost;
+    var usersTaggedInPost= userTaggedArr.split(",");//TODO@
+    var publishersArr = this.filterForm.value.publishers;
+    var publishers = publishersArr.split(",");
 
    var dateFrom = this.filterForm.value.dateFrom;
-   if(dateFrom = null)
-      dateFrom = new Date('January 1, 1 00:00:00');
+   if(dateFrom == "")
+      dateFrom = new Date(1,0,1);
+     // dateFrom = new Date()
    var dateTo = this.filterForm.value.dateTo;
-   if(dateTo = null)
-    dateTo = new Date('January 1, 1 00:00:00');
+   if(dateTo == "")
+    dateTo = new Date();
 
 
     console.log(dateFrom, dateTo );
 
-    this.filterEvent.emit(new FilterI(publishersArr,dateFrom,dateTo,tagsArr,userTaggedArr));
+    this.filterEvent.emit(new FilterI(publishers,dateFrom,dateTo,tags,usersTaggedInPost));
   }
 
 }
