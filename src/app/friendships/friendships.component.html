@@ -1,10 +1,9 @@
-<p>friendships works!</p>
 <!-- 
 <app-friends> </app-friends>
 
 <app-groups> </app-groups> -->
 
-<div cdkDropListGroup>
+<!-- <div cdkDropListGroup>
     <div class="example-container">
       <h2>friends</h2>
   
@@ -46,4 +45,58 @@
           <div class="example-box" *ngFor="let item of more" cdkDrag (cdkDragDropped)="dragDropped($event)">{{item}}</div>
         </div>
       </div>
+  </div> -->
+
+<!-- <div class="example-container">
+    <h2>friends</h2>
+
+    <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drops($event)"
+      [cdkDropListEnterPredicate]="noReturnPredicate">
+      <div class="example-box" *ngFor="let item of todo" (mouseenter)="enter(0)" cdkDrag (cdkDragDropped)="dragDropped($event)">
+        {{item}}
+      </div>
+    </div>
+  </div> -->
+
+<!-- <div class="example-container">
+    <div class="example-list" *ngFor="let date of demo; let i=index;" cdkDropList (cdkDropListDropped)="drops($event)">
+      <div>
+      <div class="example-box" (mouseenter)="enter(i)" *ngFor="let schedule of date" cdkDrag>
+        {{ schedule }}
+      </div>
+    </div>
   </div>
+</div>
+</div> -->
+<div class="logout-btn">
+  <button mat-fab color="primary" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</div>
+<div class="buttons">
+  <button mat-raised-button class="add-friend" color="primary" (click)="addGroup()">Add New Group</button>
+  <button mat-raised-button color="primary" class="main" (click)="main()">Main</button>
+
+</div>
+<br>
+<div cdkDropListGroup>
+  <div class="example-container">
+    <h2>My Friends</h2>
+    <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)"
+      [cdkDropListEnterPredicate]="noReturnPredicate">
+      <div class="example-box" *ngFor="let item of todo" (mouseenter)="enter(0)" cdkDrag
+        (cdkDragDropped)="dragDropped($event)">
+        {{item}}
+      </div>
+    </div>
+    <br>
+    <div class="example-list" cdkDropList [cdkDropListData]="list" *ngFor="let list of demo; let i=index;"
+      (cdkDropListDropped)="drop($event)">
+      <h2>Group {{i}}</h2>
+      <div class="example-box" cdkDrag [cdkDragData]="item" *ngFor="let item of list"
+        (cdkDragDropped)="dragDropped($event)" (mouseenter)="enter(i)">
+        {{item}}
+      </div>
+    </div>
+  </div>
+</div>
