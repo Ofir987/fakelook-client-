@@ -48,3 +48,19 @@
 .text-area{
   width: 100%;
 }
+
+/* .edit-btn{
+  float: right;
+} */
+
+.title-card-right{
+  display: inline;
+  float: right;
+}
+
+.title-card-left{
+  display: inline;
+}
+mat-card-title{
+ width: 100%;
+}

@@ -23,6 +23,8 @@ export class PostComponent implements OnInit {
 
  comments?:CommentI[] = [];
 
+ imgSrc!:string;
+
  @Input() post!:PostI;
 
  @Output() showCommentPressed = new EventEmitter<boolean>();
@@ -38,8 +40,8 @@ export class PostComponent implements OnInit {
 
   constructor(public likeService: LikeService,public dialog: MatDialog) { 
     this.currentUserId = this.getCurrentUserId();
-    JSON.parse(this.currentUserId?this.currentUserId:'');
-    // console.log(this.currentUserId);
+    //JSON.parse(this.currentUserId?this.currentUserId:'');
+     console.log(this.currentUserId);
   }
   
   addCommentForm = new FormGroup({
@@ -54,6 +56,7 @@ export class PostComponent implements OnInit {
     this.userLike = this.post.likes?.some((like)=> like.userId == this.currentUserId) || false;
     this.numberOfLikes = this.post.likes?.length || 0;
     this.comments = this.post.comments;
+    this.imgSrc = "";
   }
 
   openComments(){

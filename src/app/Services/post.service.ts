@@ -20,13 +20,17 @@ export class PostService {
   addPost(post: PostI): void {
     console.log(post);
     const currentUrl = `${this.url}Post/Add`;
-     var token = localStorage.getItem("token");
-     var id = localStorage.getItem("id");
-     post.userId = JSON.parse(id?id:'');
+     let token = localStorage.getItem("token");
+     let id = localStorage.getItem("id");
+    //  if(id != null){
+    //   post.userId = Number(id);
+    //  }
+     post.userId = parseInt(id || '0');
+    //  post.userId = parseInt(id) || '';
      console.log( post.userId );
 
-     this.subs.push(
-      this.http.post<any>(currentUrl, post,{
+    //  this.subs.push(
+      this.http.post<PostI>(currentUrl, post,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}`
       })
       }).subscribe((res:PostI) => {
@@ -35,8 +39,8 @@ export class PostService {
         this.posts$.next([res,...current]);
         // this.setToken(res.token);
         // this.router.navigateByUrl('/Secret');
-      })
-    );
+      });
+    // );
 
    
 
@@ -59,7 +63,7 @@ export class PostService {
  
       this.http.post<PostI[]>(currentUrl,filters,
         {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization':`Bearer ${token}` })
+        headers: new HttpHeaders({'Authorization':`Bearer ${token}` })
         })
       .subscribe((data:any)=> {this.posts$.next(data);
          }); 
