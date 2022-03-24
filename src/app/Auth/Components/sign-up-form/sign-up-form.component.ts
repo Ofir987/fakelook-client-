@@ -36,7 +36,6 @@ export class SignUpFormComponent implements OnInit {
     if(!this.signUpForm.valid)
       return;
 
-    //const name = this.signUpForm.value.nameControl; 
     const user: IUser = this.signUpForm.value;
     console.log(user);
     this.authService.signUp(user);
