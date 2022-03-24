@@ -11,8 +11,6 @@ export class LikeService {
 
   constructor(private http: HttpClient) { }
 
-  private like$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-
   like = false;
   private url = 'https://localhost:44349/api/';
   subs: Subscription[] = [];
@@ -29,12 +27,11 @@ export class LikeService {
       })
     }).subscribe((res) => {
       console.log(res);
-      // this.like$.next(true);
     });
   }
 
-  removeLike(like: ILike): void {
-    const currentUrl = `${this.url}Like/RemoveLike`;
+  toggleIsActiveLike(like: ILike): void {
+    const currentUrl = `${this.url}Like/ToggleIsActiveLike`;
     var token = localStorage.getItem("token");
     //  var id = localStorage.getItem("id");
     //  like.userId = JSON.parse(id?id:'');

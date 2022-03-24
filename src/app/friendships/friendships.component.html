@@ -84,9 +84,9 @@
     <h2>My Friends</h2>
     <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)"
       [cdkDropListEnterPredicate]="noReturnPredicate">
-      <div class="example-box" *ngFor="let item of todo" (mouseenter)="enter(0)" cdkDrag
+      <div class="example-box" *ngFor="let item of users |async" (mouseenter)="enter(0)" cdkDrag
         (cdkDragDropped)="dragDropped($event)">
-        {{item}}
+        {{item.userName}}
       </div>
     </div>
     <br>

@@ -44,7 +44,6 @@ export class PostComponent implements OnInit {
 
   constructor(public likeService: LikeService,public dialog: MatDialog) { 
     this.currentUserId = this.getCurrentUserId();
-    //JSON.parse(this.currentUserId?this.currentUserId:'');
      console.log(this.currentUserId);
      this.currentUserName = localStorage.getItem("userName") || '';
   
@@ -83,7 +82,7 @@ export class PostComponent implements OnInit {
     });
   }
 
-  addLike(postId:any){
+  like(postId:any){
     console.log("addLike post");
     if(!this.userLike)
       this.numberOfLikes++;

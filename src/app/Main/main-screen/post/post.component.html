@@ -36,7 +36,7 @@
         <mat-card-actions>
             {{ numberOfLikes }}
 
-            <button mat-icon-button (click)="addLike(post?.id)">
+            <button mat-icon-button (click)="like(post?.id)">
                 <mat-icon class="like">{{ userLike? 'favorite': 'favorite_border' }}</mat-icon>
             </button>
             <button mat-icon-button (click)="openComments()">

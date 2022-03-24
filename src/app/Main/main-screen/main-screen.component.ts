@@ -48,17 +48,15 @@ export class MainScreenComponent implements OnInit {
 
   likePostById(likeToPost: ILike) {
     if (likeToPost.isActive)
-      this.likeService.removeLike(likeToPost);
+      this.likeService.toggleIsActiveLike(likeToPost);
     else
       this.likeService.addLike(likeToPost);
-    console.log("likeinmain")
   }
 
   openBottomSheet() {
     let sheetRef = this._bottomSheet.open(AddNewPostComponent);
   }
   getFilters(event: IFilter) {
-    // this.postsInMain$=
     console.log(event, "in main");
     this.postService.getPostsByFilters$(event);
   }
