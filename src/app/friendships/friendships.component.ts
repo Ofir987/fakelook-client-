@@ -1,6 +1,9 @@
 import { CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IUser } from '../Models/user.model';
+import { FriendService } from '../Services/friend.service';
 
 @Component({
   selector: 'app-friendships',
@@ -11,7 +14,7 @@ export class FriendshipsComponent implements OnInit {
 
   activeNumIndex!: number;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private friendService:FriendService ) { }
 
   todo = ['tomi', 'lolo', 'gigi', 'dudu'];
 
@@ -26,6 +29,8 @@ export class FriendshipsComponent implements OnInit {
     // ['fofo', 'mimi','toto'],
   ]
 
+  users?:Observable<IUser[]>;
+
   isPointerOverContainer?: boolean;
 
   manager?: string;
@@ -36,6 +41,8 @@ export class FriendshipsComponent implements OnInit {
     this.demo = [
       [this.manager]
     ];
+    this.users = this.friendService.getAllUsers$();
+    console.log(this.users);
   }
 
   logout(){

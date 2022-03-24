@@ -70,12 +70,6 @@ export class MapComponent implements OnInit, AfterViewInit {
       height: 'auto',
       data: entity,
     });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed + result ' + result);
-    //   if(result)
-    //     this.resetForm();
-    // });
   }
 
  

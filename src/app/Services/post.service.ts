@@ -91,8 +91,6 @@ export class PostService {
     .subscribe((data)=> this.posts$.next(data));
 
   return this.posts$.asObservable();
-   // posts$ = new Subject().next(this.http.get<PostI[]>(currentUrl, { headers }).subscribe();
-  //  return this.http.get<PostI[]>(currentUrl, { headers });
   }
 
 
