@@ -11,37 +11,25 @@ export class LikeService {
 
   constructor(private http: HttpClient) { }
 
-  like = false;
   private url = 'https://localhost:44349/api/';
-  subs: Subscription[] = [];
 
   addLike(like: ILike): void {
     const currentUrl = `${this.url}Like/Add`;
     var token = localStorage.getItem("token");
-    //  var id = localStorage.getItem("id");
-    //  like.userId = JSON.parse(id?id:'');
-    console.log(like);
     this.http.post<ILike>(currentUrl, like, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
       })
-    }).subscribe((res) => {
-      console.log(res);
     });
   }
 
   toggleIsActiveLike(like: ILike): void {
     const currentUrl = `${this.url}Like/ToggleIsActiveLike`;
     var token = localStorage.getItem("token");
-    //  var id = localStorage.getItem("id");
-    //  like.userId = JSON.parse(id?id:'');
-    console.log("removeLike",like);
     this.http.post<ILike>(currentUrl, like, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
       })
-    }).subscribe((res) => {
-      console.log("res", res);
     });
   }
 }

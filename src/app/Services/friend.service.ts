@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { IUser } from '../Models/user.model';
 
 @Injectable({
@@ -15,7 +15,11 @@ export class FriendService {
 
   private users$: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
 
-  getAllUsers$(): Observable<IUser[]> {
+  private users?: IUser[];
+  private usersName!: string[];
+
+
+  getAllUsers(): IUser[] {
 
     const currentUrl = `${this.url}User/GetAll`;
     var token = localStorage.getItem("token");
@@ -24,10 +28,20 @@ export class FriendService {
       Authorization: 'Bearer ' + token,
     });
 
+      
     this.http.get<IUser[]>(currentUrl, { headers })
-    .subscribe((data)=> this.users$.next(data));
+    .subscribe( 
+      (data)=>
+      // {console.log(data)
+        this.users = data
+      // data.forEach(async (user)=> await this.usersName?.push(user.userName))}
+      // this.users$.next(data)
+      );
 
-  return this.users$.asObservable();
+
+  return this.users || [];
+
+  // return this.users$.asObservable();
 
   }
 

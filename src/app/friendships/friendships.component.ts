@@ -16,20 +16,13 @@ export class FriendshipsComponent implements OnInit {
 
   constructor(private router: Router, private friendService:FriendService ) { }
 
-  todo = ['tomi', 'lolo', 'gigi', 'dudu'];
+  demo = [['lolo'],];
 
-  done = ['lolo'];
 
-  more =['lolo'];
+  users?: IUser[];
 
-  demo = [['lolo'],
-    // ['ofiroosh'],
-    // ['tome', 'lolo', 'gigi', 'dudu'],
-    // ['lolo', 'shimi','rubi'],
-    // ['fofo', 'mimi','toto'],
-  ]
+  usersName: string[] = [];
 
-  users?:Observable<IUser[]>;
 
   isPointerOverContainer?: boolean;
 
@@ -41,8 +34,10 @@ export class FriendshipsComponent implements OnInit {
     this.demo = [
       [this.manager]
     ];
-    this.users = this.friendService.getAllUsers$();
-    console.log(this.users);
+    this.friendService.getAllUsers().forEach((user)=>{
+      this.usersName.push(user.userName);
+      console.log(user.userName)});
+      console.log(this.usersName);
   }
 
   logout(){
@@ -62,6 +57,7 @@ export class FriendshipsComponent implements OnInit {
     if (this.isPointerOverContainer) {
       if (event.previousContainer === event.container) {
         moveItemInArray(this.demo[this.activeNumIndex], event.previousIndex, event.currentIndex);
+
       } else {
         let idx=event.container.data.indexOf(event.previousContainer.data[event.previousIndex]);
         if(idx != -1){
